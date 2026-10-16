@@ -1,0 +1,15 @@
+FROM python:3.12-slim
+
+WORKDIR /app
+COPY pyproject.toml README.md ./
+COPY visitbrief ./visitbrief
+COPY frontend ./frontend
+COPY main.py ./
+RUN pip install --no-cache-dir .
+
+# Fixture PDFs are deployment data, not package data. Mount them at runtime.
+ENV VISITBRIEF_HOST=0.0.0.0
+ENV VISITBRIEF_PORT=8000
+ENV VISITBRIEF_INFERENCE_ENABLED=false
+EXPOSE 8000
+CMD ["python", "main.py"]

@@ -1,0 +1,38 @@
+# CPU application. Inference is off unless VISITBRIEF_INFERENCE_ENABLED=true.
+# notebook: private adapter at 127.0.0.1:8001, reached here via host.docker.internal.
+# token_factory: AMD Token Factory at the HTTPS catalog URL. The key stays in .env.
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    environment:
+      VISITBRIEF_CASES_DIR: /fixtures/cases
+      VISITBRIEF_INFERENCE_ENABLED: ${VISITBRIEF_INFERENCE_ENABLED:-false}
+      VISITBRIEF_MODEL_BACKEND: ${VISITBRIEF_MODEL_BACKEND:-notebook}
+      VISITBRIEF_MODEL_BASE_URL: ${VISITBRIEF_MODEL_BASE_URL:-http://host.docker.internal:8001/v1}
+      VISITBRIEF_MODEL_API_KEY: ${VISITBRIEF_MODEL_API_KEY:-}
+      VISITBRIEF_MODEL_ID: ${VISITBRIEF_MODEL_ID:-Qwen/Qwen2.5-7B-Instruct}
+      VISITBRIEF_REASONING_EFFORT: ${VISITBRIEF_REASONING_EFFORT:-}
+      VISITBRIEF_MODEL_TIMEOUT_SECONDS: ${VISITBRIEF_MODEL_TIMEOUT_SECONDS:-180}
+      VISITBRIEF_MODEL_CONTEXT_TOKENS: ${VISITBRIEF_MODEL_CONTEXT_TOKENS:-8192}
+      VISITBRIEF_MODEL_MAX_OUTPUT_TOKENS: ${VISITBRIEF_MODEL_MAX_OUTPUT_TOKENS:-2048}
+      VISITBRIEF_HOST: 0.0.0.0
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./fixtures/cases:/fixtures/cases:ro
+    ports:
+      - "127.0.0.1:8000:8000"
+
+  ui:
+    build:
+      context: .
+      dockerfile: Dockerfile.ui
+    environment:
+      VISITBRIEF_API_URL: http://api:8000
+    depends_on:
+      - api
+    ports:
+      - "127.0.0.1:8501:8501"
