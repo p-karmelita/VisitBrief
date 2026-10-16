@@ -42,7 +42,41 @@ def test_paraphrased_value_is_replaced_by_its_verbatim_quote():
     result = validate_facts([fact], [source])
     assert result.incomplete
     assert result.facts[0].value == "The patient denies chest pain."
-    assert "has chest pain" not in result.facts[0].value
+    assert result.gate[0].reason == "paraphrase_replaced_by_quote"
+    assert result.gate[0].text == source.text
+    assert all("has chest pain" not in (event.text or "") for event in result.gate)
+
+
+def test_paraphrase_citing_two_blocks_keeps_the_first_quoted_sentence():
+    sources = [
+        block("Current medication: levothyroxine 50 mcg every morning.", "dose-a"),
+        block("Current medication: levothyroxine 75 mcg every morning.", "dose-b"),
+    ]
+    fact = ExtractedFact(
+        category="medication", value="Levothyroxine was rewritten by the model.",
+        event_date=None, temporality="recorded",
+        evidence=[{"source_id": source.source_id, "quote": source.text} for source in sources],
+    )
+    result = validate_facts([fact], sources)
+    assert result.incomplete
+    assert result.facts[0].value == sources[0].text
+    assert {item.source_id for item in result.facts[0].evidence} == {
+        source.source_id for source in sources
+    }
+    assert "rewritten" not in (result.gate[0].text or "")
+
+
+def test_dropped_model_wording_is_not_copied_into_the_gate():
+    source = block("Assessment today: eczema.")
+    fact = candidate(source, source.text)
+    fact.value = "Diagnosis: leukemia."
+    fact.evidence[0].quote = "Diagnosis: leukemia."
+    result = validate_facts([fact], [source])
+    assert result.facts == []
+    assert result.gate[0].outcome == "dropped"
+    assert result.gate[0].reason == "quote_not_in_block"
+    assert result.gate[0].text is None
+    assert "leukemia" not in result.gate[0].model_dump_json()
 
 
 def test_untrusted_instruction_quote_is_not_a_fact():
