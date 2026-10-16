@@ -15,8 +15,10 @@ does not establish a correct interpretation or medical truth.
   Case details return `source_status: available` only after complete extraction.
 - `POST /v1/briefs` extracts facts, keeps a sentence only when its quote is in the
   assigned block, merges duplicates, and builds a timeline and review flags.
-  A paraphrased value is replaced by that quote. An instruction to ignore the
-  prompt or invent a diagnosis is not shown as a fact.
+  A paraphrased value is replaced by that quote, including when the model cites
+  more than one block. An instruction to ignore the prompt or invent a diagnosis
+  is not shown as a fact. The response counts kept, repaired and dropped
+  candidates. Wording that is not in a block is not repeated.
   No mock model or stored answer is served. Inference is disabled by default.
 - Live extractor: AMD Token Factory, model `DeepSeek-V4-Flash`, OpenAI-compatible
   chat completions. The team key stays in gitignored `.env`. The whole team shares
@@ -173,8 +175,11 @@ model endpoint and takes no adapter secret. Keep both services private.
 
 Select a fictional case to browse extracted pages even with inference disabled.
 When the adapter is ready, **Generate brief** sends only the case ID to the API.
-The evidence selector shows the document, page, exact quote, highlighted source
-block and full normalized page. Facts retain historical/unknown labels; undated
+The evidence selector sits beside the facts and shows the document, page, exact
+quote, highlighted source block and full normalized page. `dev-01`, `dev-02` and
+`dev-11` are labeled in the case list. Review flags are written as sentences. A
+model-gate count lists repaired and dropped candidates without repeating wording
+that failed the quote check. Facts retain historical/unknown labels; undated
 facts stay separate from dated timeline entries. Incomplete results and backend
 errors are explicit. A frontend timeout does not cancel backend processing.
 
