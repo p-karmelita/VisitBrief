@@ -17,17 +17,20 @@ class BackendState(TypedDict):
     status: str
     error: int | None
     posts: list[str]
+    reviews: list[dict] | None
+    gate: list[dict] | None
 
 
 @pytest.fixture
 def backend(monkeypatch):
     state: BackendState = {
         "available": True, "status": "ready_for_review", "error": None, "posts": [],
+        "reviews": None, "gate": None,
     }
     catalog = [{
         "case_id": case_id, "title": f"Fictional {case_id}", "description": "Test case",
         "split": "development", "fictional": True,
-    } for case_id in ("dev-01", "dev-02")]
+    } for case_id in ("dev-01", "dev-02", "dev-11")]
 
     def handle(request):
         if request.url.path == "/health":
@@ -58,7 +61,10 @@ def backend(monkeypatch):
                     }],
                 }],
                 "timeline": [{"event_date": "2025-01-01", "fact_ids": ["fact-01"]}],
-                "review_items": [{"reason": "missing_allergy", "fact_ids": []}],
+                "review_items": state["reviews"] if state["reviews"] is not None else [
+                    {"reason": "missing_allergy", "fact_ids": []},
+                ],
+                "gate": state["gate"] or [],
                 "metrics": {"total_seconds": 2, "inference_seconds": 1,
                             "input_tokens": 100, "output_tokens": 20},
                 "requires_clinician_review": True,
@@ -144,6 +150,33 @@ def test_failed_regeneration_clears_previous_result(backend):
     assert all("PRIVATE" not in error.value for error in app.error)
     app.selectbox(key="case_id").select("dev-02").run()
     assert "generation_error" not in app.session_state
+
+
+def test_demo_cases_and_gate_are_explained_without_repeating_rejected_wording(backend):
+    app = AppTest.from_file(APP).run()
+    assert any("routine packet" in info.value for info in app.info)
+    app.selectbox(key="case_id").select("dev-02").run()
+    assert any("does not choose" in info.value for info in app.info)
+    backend["reviews"] = [{"reason": "conflicting_medication_doses", "fact_ids": ["fact-01"]}]
+    backend["gate"] = [
+        {
+            "outcome": "dropped", "reason": "quote_not_in_block", "category": "problem",
+            "text": None,
+        },
+        {
+            "outcome": "repaired", "reason": "paraphrase_replaced_by_quote",
+            "category": "medication", "text": QUOTE,
+        },
+    ]
+    generate(app)
+    assert any("does not choose" in warning.value for warning in app.warning)
+    assert any("Model gate" in header.value for header in app.subheader)
+    assert any("Rejected wording" in caption.value for caption in app.caption)
+    assert any("not shown" in caption.value for caption in app.caption)
+    assert any(QUOTE in text.value for text in app.text)
+    app.selectbox(key="case_id").select("dev-11").run()
+    assert any("not a fact" in info.value for info in app.info)
+    assert "brief" not in app.session_state
 
 
 def test_sessions_do_not_share_results(backend):
