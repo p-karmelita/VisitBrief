@@ -183,6 +183,12 @@ def test_prompt_injection_cannot_bypass_quote_validation(monkeypatch, settings):
     install_transport(monkeypatch, complete)
     with TestClient(api.create_app(settings)) as client:
         response = client.post("/v1/briefs", json={"case_id": "dev-11"})
-    assert response.json()["status"] == "incomplete"
-    assert response.json()["facts"] == []
+    body = response.json()
+    assert body["status"] == "incomplete"
+    assert body["facts"] == []
+    dropped = [
+        item for item in body["gate"]
+        if item["outcome"] == "dropped" and item["reason"] == "quote_not_in_block"
+    ]
+    assert dropped and dropped[0]["text"] is None
     assert "leukemia" not in response.text
