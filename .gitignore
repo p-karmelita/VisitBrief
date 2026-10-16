@@ -13,3 +13,6 @@ dist/
 htmlcov/
 backups/
 .junie/
+.idea/
+.agents/
+.claude/
