@@ -4,13 +4,14 @@ from dataclasses import dataclass
 from datetime import date
 
 from visitbrief.inference import ExtractedFact
-from visitbrief.schemas import Fact, ReviewItem, SourceBlock, TimelineEntry
+from visitbrief.schemas import Fact, GateEvent, ReviewItem, SourceBlock, TimelineEntry
 
 
 @dataclass(frozen=True)
 class ValidatedFacts:
     facts: list[Fact]
     incomplete: bool
+    gate: tuple[GateEvent, ...] = ()
 
 
 _UNTRUSTED_INSTRUCTION = re.compile(
@@ -19,63 +20,92 @@ _UNTRUSTED_INSTRUCTION = re.compile(
 )
 
 
-def _supported_evidence(candidate: ExtractedFact, sources: dict[str, str]) -> ExtractedFact | None:
-    """Keep verbatim quotes. A rewritten value is replaced by the quote it cites."""
-    evidence = [
-        item for item in candidate.evidence
-        if item.source_id in sources and item.quote in sources[item.source_id]
-        and not _UNTRUSTED_INSTRUCTION.search(item.quote)
-    ]
-    if not evidence:
-        return None
-    if any(candidate.value == item.quote for item in evidence):
-        return candidate.model_copy(update={"evidence": evidence})
-    # One cited sentence is enough to display. The paraphrase is not shown.
-    if len(evidence) == 1:
-        return candidate.model_copy(update={"value": evidence[0].quote, "evidence": evidence})
-    return None
+def _gate(outcome: str, reason: str, candidate: ExtractedFact, text: str | None) -> GateEvent:
+    return GateEvent(outcome=outcome, reason=reason, category=candidate.category, text=text)
+
+
+def _classify_support(
+    candidate: ExtractedFact, sources: dict[str, str],
+) -> tuple[ExtractedFact | None, str, str | None]:
+    """Return the displayable fact, the gate reason, and source text safe to repeat."""
+    trusted = []
+    untrusted = []
+    for item in candidate.evidence:
+        block = sources.get(item.source_id)
+        if block is None or item.quote not in block:
+            continue
+        if _UNTRUSTED_INSTRUCTION.search(item.quote):
+            untrusted.append(item.quote)
+        else:
+            trusted.append(item)
+    if not trusted:
+        if untrusted:
+            return None, "untrusted_instruction", untrusted[0]
+        return None, "quote_not_in_block", None
+    if any(candidate.value == item.quote for item in trusted):
+        updated = candidate.model_copy(update={"evidence": trusted})
+        reason = (
+            "verbatim_quote" if updated.evidence == candidate.evidence
+            else "unsupported_evidence_removed"
+        )
+        return updated, reason, updated.value
+    # Several cited sentences can support one rewritten value. Show the first
+    # sentence and keep the others as evidence. The rewrite itself is not shown.
+    shown = trusted[0].quote
+    return (
+        candidate.model_copy(update={"value": shown, "evidence": trusted}),
+        "paraphrase_replaced_by_quote",
+        shown,
+    )
 
 
 def validate_facts(candidates: list[ExtractedFact], blocks: list[SourceBlock]) -> ValidatedFacts:
     sources = {block.source_id: block.text for block in blocks}
     facts = []
+    notes = []
     incomplete = False
-    for candidate in candidates:
-        repaired = _supported_evidence(candidate, sources)
+    for original in candidates:
+        repaired, reason, safe_text = _classify_support(original, sources)
         if repaired is None:
             incomplete = True
+            notes.append(_gate("dropped", reason, original, safe_text))
             continue
-        if repaired.value != candidate.value or repaired.evidence != candidate.evidence:
+        outcome = "kept" if reason == "verbatim_quote" else "repaired"
+        if repaired.value != original.value or repaired.evidence != original.evidence:
             incomplete = True
-        candidate = repaired
-        evidence = candidate.evidence
+        notes.append(_gate(outcome, reason, repaired, safe_text))
+        evidence = repaired.evidence
         event_date = None
-        if candidate.event_date is not None:
+        if original.event_date is not None:
             try:
-                event_date = date.fromisoformat(candidate.event_date)
+                parsed = date.fromisoformat(original.event_date)
             except ValueError:
-                incomplete = True
-            if event_date is not None and not any(
-                candidate.event_date in item.quote or (
+                parsed = None
+            supported = parsed is not None and any(
+                original.event_date in item.quote or (
                     re.search(r"\b(today|current|this encounter)\b", item.quote, re.IGNORECASE)
-                    and f"Document date: {candidate.event_date}" in sources[item.source_id]
+                    and f"Document date: {original.event_date}" in sources[item.source_id]
                 ) for item in evidence
-            ):
-                event_date = None
+            )
+            if supported:
+                event_date = parsed
+            else:
                 incomplete = True
-        temporality = candidate.temporality
-        if candidate.category == "medication" and re.search(
+                notes.append(_gate("repaired", "date_not_in_quote", repaired, repaired.value))
+        temporality = original.temporality
+        if repaired.category == "medication" and re.search(
             r"\b(historical|no longer|stopped|ended|completed|was prescribed)\b",
-            candidate.value, re.IGNORECASE,
+            repaired.value, re.IGNORECASE,
         ) and temporality != "historical":
             temporality = "historical"
             incomplete = True
+            notes.append(_gate("repaired", "temporality_corrected", repaired, repaired.value))
         facts.append(Fact(
-            id=f"fact-{len(facts) + 1:02d}", category=candidate.category,
-            value=candidate.value, event_date=event_date, temporality=temporality,
+            id=f"fact-{len(facts) + 1:02d}", category=repaired.category,
+            value=repaired.value, event_date=event_date, temporality=temporality,
             evidence=evidence,
         ))
-    return ValidatedFacts(facts, incomplete)
+    return ValidatedFacts(facts, incomplete, tuple(notes))
 
 
 def assemble_facts(

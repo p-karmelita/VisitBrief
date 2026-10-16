@@ -119,6 +119,27 @@ class TimelineEntry(Contract):
     fact_ids: Annotated[list[Identifier], Field(min_length=1)]
 
 
+class GateEvent(Contract):
+    """One model candidate after the quote check.
+
+    `text` is copied only when it already occurs in a source block. Rejected
+    wording that is not in a block is counted and not repeated.
+    """
+
+    outcome: Literal["kept", "repaired", "dropped"]
+    reason: Literal[
+        "verbatim_quote",
+        "paraphrase_replaced_by_quote",
+        "unsupported_evidence_removed",
+        "quote_not_in_block",
+        "untrusted_instruction",
+        "date_not_in_quote",
+        "temporality_corrected",
+    ]
+    category: FactCategory
+    text: NonEmptyText | None = None
+
+
 class BriefMetrics(Contract):
     total_seconds: float = Field(ge=0, allow_inf_nan=False)
     inference_seconds: float = Field(ge=0, allow_inf_nan=False)
@@ -136,5 +157,6 @@ class BriefResult(Contract):
     facts: list[Fact]
     timeline: list[TimelineEntry]
     review_items: list[ReviewItem]
+    gate: list[GateEvent] = Field(default_factory=list)
     metrics: BriefMetrics
     requires_clinician_review: Literal[True] = True
