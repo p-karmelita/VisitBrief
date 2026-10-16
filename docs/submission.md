@@ -30,7 +30,9 @@ when its quote is in the assigned block. If the model paraphrases the value,
 the screen shows the quote instead. Duplicates are merged, dates that are not
 in the quote are cleared, and conflicting doses are shown side by side instead
 of reconciled. A sentence that tells the model to ignore instructions or invent
-a diagnosis is dropped, and the case is flagged. Missing allergy documentation,
+a diagnosis is dropped, and the case is flagged. The screen counts model
+candidates that were kept, repaired or dropped. Wording that is not in a
+source block is not repeated. Missing allergy documentation,
 undated facts and incomplete extraction stay visible. The interface says the
 result is a draft for clinician review.
 
@@ -47,7 +49,7 @@ pass with Qwen2.5-7B-Instruct recalled 22.4% and 18.6%. That notebook is down.
 
 | Risk | What the product does |
 | --- | --- |
-| Incorrect or unsupported response | A paraphrase or unknown source id is dropped. The case becomes `incomplete`. |
+| Incorrect or unsupported response | A paraphrase is replaced by the quote it cites. A quote that is not in the assigned block is dropped and its wording is not repeated. The case becomes `incomplete`. |
 | Sensitive information | Only built-in fictional PDFs. No upload, no free prompt, no stored patient record. |
 | Uncertain results | Missing dates stay off the timeline. Missing allergy text is a review flag, not a "no allergies" fact. |
 | High-risk decisions | No diagnosis, no dose change, no treatment advice. Conflicting doses are both shown. |
@@ -71,8 +73,8 @@ in `docs/demo/` or a fresh local run. Do not put the team API key in the form.
 
 ## Still required before the lablab form is complete
 
-- A public Git repository. Do not commit `.env` or
-  `/workspace/visitbrief.runtime.env`.
+- Public Git repository: <https://github.com/p-karmelita/VisitBrief.git>.
+  Do not commit `.env` or `/workspace/visitbrief.runtime.env`.
 - A demo video of the three cases above, including the review flags. Record
   into `docs/demo/` from the local UI. The notebook cannot be shown while it
   returns HTTP 502.
