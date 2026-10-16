@@ -19,6 +19,7 @@ def create_brief(stored: CaseFiles, settings: Settings, client: InferenceClient)
         reserved_tokens=settings.model_max_output_tokens,
     )
     facts = []
+    gate = []
     incomplete = False
     input_tokens = output_tokens = 0
     inference_seconds = 0.0
@@ -26,6 +27,7 @@ def create_brief(stored: CaseFiles, settings: Settings, client: InferenceClient)
         output = client.extract(batch.payload)
         validated = validate_facts(output.extraction.facts, list(batch.blocks))
         facts.extend(validated.facts)
+        gate.extend(validated.gate)
         incomplete |= validated.incomplete or not validated.facts
         input_tokens += output.input_tokens
         output_tokens += output.output_tokens
@@ -33,7 +35,7 @@ def create_brief(stored: CaseFiles, settings: Settings, client: InferenceClient)
     facts, timeline, reviews, incomplete = assemble_facts(facts, blocks, incomplete=incomplete)
     return BriefResult(
         case_id=stored.manifest.case_id, status="incomplete" if incomplete else "ready_for_review",
-        facts=facts, timeline=timeline, review_items=reviews,
+        facts=facts, timeline=timeline, review_items=reviews, gate=gate,
         metrics=BriefMetrics(
             total_seconds=time.perf_counter() - started, inference_seconds=inference_seconds,
             input_tokens=input_tokens, output_tokens=output_tokens,
