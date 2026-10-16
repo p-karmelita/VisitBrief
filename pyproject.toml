@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "visitbrief"
+version = "0.1.0"
+description = "Source-linked fictional patient documentation demonstrator"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.119,<1",
+    "httpx>=0.28,<1",
+    "pydantic>=2.12,<3",
+    "pydantic-settings>=2.11,<3",
+    "pypdf==6.20.1",
+    "uvicorn>=0.37,<1",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.4,<10", "ruff>=0.14,<1"]
+ui = ["streamlit>=1.50,<2"]
+
+[tool.setuptools.packages.find]
+include = ["visitbrief*", "frontend*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
