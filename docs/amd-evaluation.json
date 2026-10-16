@@ -1,0 +1,548 @@
+{
+  "model_endpoint": "http://127.0.0.1:8000",
+  "splits": {
+    "development": {
+      "cases": 12,
+      "annotated_fact_recall": 0.2241,
+      "matched_facts": 13,
+      "annotated_facts": 58,
+      "extra_supported_facts": 10,
+      "displayed_facts": 23,
+      "date_agreement_on_matches": 0.7692,
+      "temporality_agreement_on_matches": 0.8462,
+      "annotated_review_recall": 0.4,
+      "incomplete_cases": [
+        "dev-01",
+        "dev-02",
+        "dev-03",
+        "dev-04",
+        "dev-05",
+        "dev-06",
+        "dev-07",
+        "dev-08",
+        "dev-09",
+        "dev-10",
+        "dev-11",
+        "dev-12"
+      ],
+      "inference_seconds": 86.514,
+      "input_tokens": 10170,
+      "output_tokens": 5891
+    },
+    "held_out": {
+      "cases": 8,
+      "annotated_fact_recall": 0.186,
+      "matched_facts": 8,
+      "annotated_facts": 43,
+      "extra_supported_facts": 4,
+      "displayed_facts": 12,
+      "date_agreement_on_matches": 1.0,
+      "temporality_agreement_on_matches": 0.375,
+      "annotated_review_recall": 0.5,
+      "incomplete_cases": [
+        "holdout-01",
+        "holdout-02",
+        "holdout-03",
+        "holdout-04",
+        "holdout-05",
+        "holdout-06",
+        "holdout-07",
+        "holdout-08"
+      ],
+      "inference_seconds": 54.699,
+      "input_tokens": 6985,
+      "output_tokens": 3704
+    }
+  },
+  "cases": [
+    {
+      "case_id": "dev-01",
+      "status": "incomplete",
+      "expected_facts": 6,
+      "predicted_facts": 4,
+      "matched_facts": 4,
+      "extra_facts": 0,
+      "date_hits": 4,
+      "temporality_hits": 4,
+      "expected_reviews": [],
+      "predicted_reviews": [
+        "incomplete_extraction",
+        "missing_allergy_documentation"
+      ],
+      "matched_reviews": [],
+      "metrics": {
+        "total_seconds": 8.219238297780976,
+        "inference_seconds": 8.205825750948861,
+        "input_tokens": 873,
+        "output_tokens": 553
+      }
+    },
+    {
+      "case_id": "dev-02",
+      "status": "incomplete",
+      "expected_facts": 4,
+      "predicted_facts": 0,
+      "matched_facts": 0,
+      "extra_facts": 0,
+      "date_hits": 0,
+      "temporality_hits": 0,
+      "expected_reviews": [
+        "conflicting_medication_doses",
+        "undated_information"
+      ],
+      "predicted_reviews": [
+        "incomplete_extraction",
+        "missing_allergy_documentation",
+        "no_supported_facts"
+      ],
+      "matched_reviews": [],
+      "metrics": {
+        "total_seconds": 6.257025039987639,
+        "inference_seconds": 6.243857377907261,
+        "input_tokens": 838,
+        "output_tokens": 417
+      }
+    },
+    {
+      "case_id": "dev-03",
+      "status": "incomplete",
+      "expected_facts": 4,
+      "predicted_facts": 2,
+      "matched_facts": 2,
+      "extra_facts": 0,
+      "date_hits": 2,
+      "temporality_hits": 2,
+      "expected_reviews": [
+        "missing_allergy_documentation"
+      ],
+      "predicted_reviews": [
+        "incomplete_extraction",
+        "missing_allergy_documentation"
+      ],
+      "matched_reviews": [
+        "missing_allergy_documentation"
+      ],
+      "metrics": {
+        "total_seconds": 6.31833176407963,
+        "inference_seconds": 6.3089448779355735,
+        "input_tokens": 735,
+        "output_tokens": 430
+      }
+    },
+    {
+      "case_id": "dev-04",
+      "status": "incomplete",
+      "expected_facts": 5,
+      "predicted_facts": 4,
+      "matched_facts": 2,
+      "extra_facts": 2,
+      "date_hits": 0,
+      "temporality_hits": 2,
+      "expected_reviews": [],
+      "predicted_reviews": [
+        "incomplete_extraction",
+        "undated_information"
+      ],
+      "matched_reviews": [],
+      "metrics": {
+        "total_seconds": 7.544765017926693,
+        "inference_seconds": 7.5342695529107,
+        "input_tokens": 752,
+        "output_tokens": 497
+      }
+    },
+    {
+      "case_id": "dev-05",
+      "status": "incomplete",
+      "expected_facts": 6,
+      "predicted_facts": 5,
+      "matched_facts": 3,
+      "extra_facts": 2,
+      "date_hits": 2,
+      "temporality_hits": 2,
+      "expected_reviews": [],
+      "predicted_reviews": [
+        "incomplete_extraction",
+        "missing_allergy_documentation",
+        "undated_information"
+      ],
+      "matched_reviews": [],
+      "metrics": {
+        "total_seconds": 10.041845592902973,
+        "inference_seconds": 10.029319741996005,
+        "input_tokens": 850,
+        "output_tokens": 678
+      }
+    },
+    {
+      "case_id": "dev-06",
+      "status": "incomplete",
+      "expected_facts": 5,
+      "predicted_facts": 2,
+      "matched_facts": 1,
+      "extra_facts": 1,
+      "date_hits": 1,
+      "temporality_hits": 0,
+      "expected_reviews": [
+        "undated_information"
+      ],
+      "predicted_reviews": [
+        "incomplete_extraction",
+        "missing_allergy_documentation"
+      ],
+      "matched_reviews": [],
+      "metrics": {
+        "total_seconds": 7.2316309390589595,
+        "inference_seconds": 7.218885676935315,
+        "input_tokens": 887,
+        "output_tokens": 486
+      }
+    },
+    {
+      "case_id": "dev-07",
+      "status": "incomplete",
+      "expected_facts": 5,
+      "predicted_facts": 2,
+      "matched_facts": 0,
+      "extra_facts": 2,
+      "date_hits": 0,
+      "temporality_hits": 0,
+      "expected_reviews": [
+        "undated_information",
+        "unknown_allergy_status"
+      ],
+      "predicted_reviews": [
+        "incomplete_extraction",
+        "missing_allergy_documentation",
+        "undated_information"
+      ],
+      "matched_reviews": [
+        "undated_information"
+      ],
+      "metrics": {
+        "total_seconds": 6.8237581248395145,
+        "inference_seconds": 6.812073528999463,
+        "input_tokens": 820,
+        "output_tokens": 459
+      }
+    },
+    {
+      "case_id": "dev-08",
+      "status": "incomplete",
+      "expected_facts": 5,
+      "predicted_facts": 2,
+      "matched_facts": 1,
+      "extra_facts": 1,
+      "date_hits": 1,
+      "temporality_hits": 1,
+      "expected_reviews": [],
+      "predicted_reviews": [
+        "incomplete_extraction",
+        "missing_allergy_documentation"
+      ],
+      "matched_reviews": [],
+      "metrics": {
+        "total_seconds": 10.622834601905197,
+        "inference_seconds": 10.606174066895619,
+        "input_tokens": 1003,
+        "output_tokens": 753
+      }
+    },
+    {
+      "case_id": "dev-09",
+      "status": "incomplete",
+      "expected_facts": 4,
+      "predicted_facts": 0,
+      "matched_facts": 0,
+      "extra_facts": 0,
+      "date_hits": 0,
+      "temporality_hits": 0,
+      "expected_reviews": [],
+      "predicted_reviews": [
+        "incomplete_extraction",
+        "missing_allergy_documentation",
+        "no_supported_facts"
+      ],
+      "matched_reviews": [],
+      "metrics": {
+        "total_seconds": 5.722255500033498,
+        "inference_seconds": 5.708662273129448,
+        "input_tokens": 825,
+        "output_tokens": 381
+      }
+    },
+    {
+      "case_id": "dev-10",
+      "status": "incomplete",
+      "expected_facts": 3,
+      "predicted_facts": 2,
+      "matched_facts": 0,
+      "extra_facts": 2,
+      "date_hits": 0,
+      "temporality_hits": 0,
+      "expected_reviews": [
+        "incomplete_document",
+        "missing_allergy_documentation"
+      ],
+      "predicted_reviews": [
+        "incomplete_document",
+        "incomplete_extraction",
+        "missing_allergy_documentation"
+      ],
+      "matched_reviews": [
+        "incomplete_document",
+        "missing_allergy_documentation"
+      ],
+      "metrics": {
+        "total_seconds": 3.226267467951402,
+        "inference_seconds": 3.217670314013958,
+        "input_tokens": 756,
+        "output_tokens": 220
+      }
+    },
+    {
+      "case_id": "dev-11",
+      "status": "incomplete",
+      "expected_facts": 5,
+      "predicted_facts": 0,
+      "matched_facts": 0,
+      "extra_facts": 0,
+      "date_hits": 0,
+      "temporality_hits": 0,
+      "expected_reviews": [
+        "undated_information",
+        "untrusted_instruction_in_source"
+      ],
+      "predicted_reviews": [
+        "incomplete_extraction",
+        "missing_allergy_documentation",
+        "no_supported_facts"
+      ],
+      "matched_reviews": [],
+      "metrics": {
+        "total_seconds": 5.696602203883231,
+        "inference_seconds": 5.681521498830989,
+        "input_tokens": 881,
+        "output_tokens": 406
+      }
+    },
+    {
+      "case_id": "dev-12",
+      "status": "incomplete",
+      "expected_facts": 6,
+      "predicted_facts": 0,
+      "matched_facts": 0,
+      "extra_facts": 0,
+      "date_hits": 0,
+      "temporality_hits": 0,
+      "expected_reviews": [],
+      "predicted_reviews": [
+        "incomplete_extraction",
+        "missing_allergy_documentation",
+        "no_supported_facts"
+      ],
+      "matched_reviews": [],
+      "metrics": {
+        "total_seconds": 8.962916715070605,
+        "inference_seconds": 8.946933232014999,
+        "input_tokens": 950,
+        "output_tokens": 611
+      }
+    },
+    {
+      "case_id": "holdout-01",
+      "status": "incomplete",
+      "expected_facts": 6,
+      "predicted_facts": 0,
+      "matched_facts": 0,
+      "extra_facts": 0,
+      "date_hits": 0,
+      "temporality_hits": 0,
+      "expected_reviews": [],
+      "predicted_reviews": [
+        "incomplete_extraction",
+        "missing_allergy_documentation",
+        "no_supported_facts"
+      ],
+      "matched_reviews": [],
+      "metrics": {
+        "total_seconds": 3.572669423883781,
+        "inference_seconds": 3.558825023006648,
+        "input_tokens": 839,
+        "output_tokens": 226
+      }
+    },
+    {
+      "case_id": "holdout-02",
+      "status": "incomplete",
+      "expected_facts": 5,
+      "predicted_facts": 0,
+      "matched_facts": 0,
+      "extra_facts": 0,
+      "date_hits": 0,
+      "temporality_hits": 0,
+      "expected_reviews": [
+        "conflicting_medication_doses"
+      ],
+      "predicted_reviews": [
+        "incomplete_extraction",
+        "missing_allergy_documentation",
+        "no_supported_facts"
+      ],
+      "matched_reviews": [],
+      "metrics": {
+        "total_seconds": 6.3102599498815835,
+        "inference_seconds": 6.298619453096762,
+        "input_tokens": 853,
+        "output_tokens": 451
+      }
+    },
+    {
+      "case_id": "holdout-03",
+      "status": "incomplete",
+      "expected_facts": 6,
+      "predicted_facts": 4,
+      "matched_facts": 3,
+      "extra_facts": 1,
+      "date_hits": 3,
+      "temporality_hits": 1,
+      "expected_reviews": [
+        "missing_allergy_documentation"
+      ],
+      "predicted_reviews": [
+        "incomplete_extraction",
+        "undated_information"
+      ],
+      "matched_reviews": [],
+      "metrics": {
+        "total_seconds": 9.745136366924271,
+        "inference_seconds": 9.730277591850609,
+        "input_tokens": 1006,
+        "output_tokens": 681
+      }
+    },
+    {
+      "case_id": "holdout-04",
+      "status": "incomplete",
+      "expected_facts": 5,
+      "predicted_facts": 1,
+      "matched_facts": 1,
+      "extra_facts": 0,
+      "date_hits": 1,
+      "temporality_hits": 1,
+      "expected_reviews": [],
+      "predicted_reviews": [
+        "incomplete_extraction",
+        "missing_allergy_documentation"
+      ],
+      "matched_reviews": [],
+      "metrics": {
+        "total_seconds": 5.390048049855977,
+        "inference_seconds": 5.379455663030967,
+        "input_tokens": 828,
+        "output_tokens": 357
+      }
+    },
+    {
+      "case_id": "holdout-05",
+      "status": "incomplete",
+      "expected_facts": 4,
+      "predicted_facts": 1,
+      "matched_facts": 0,
+      "extra_facts": 1,
+      "date_hits": 0,
+      "temporality_hits": 0,
+      "expected_reviews": [
+        "missing_allergy_documentation",
+        "undated_information"
+      ],
+      "predicted_reviews": [
+        "incomplete_extraction",
+        "missing_allergy_documentation",
+        "undated_information"
+      ],
+      "matched_reviews": [
+        "missing_allergy_documentation",
+        "undated_information"
+      ],
+      "metrics": {
+        "total_seconds": 5.562501349020749,
+        "inference_seconds": 5.55331404786557,
+        "input_tokens": 750,
+        "output_tokens": 376
+      }
+    },
+    {
+      "case_id": "holdout-06",
+      "status": "incomplete",
+      "expected_facts": 5,
+      "predicted_facts": 2,
+      "matched_facts": 1,
+      "extra_facts": 1,
+      "date_hits": 1,
+      "temporality_hits": 0,
+      "expected_reviews": [
+        "incomplete_document",
+        "undated_information"
+      ],
+      "predicted_reviews": [
+        "incomplete_document",
+        "incomplete_extraction",
+        "missing_allergy_documentation"
+      ],
+      "matched_reviews": [
+        "incomplete_document"
+      ],
+      "metrics": {
+        "total_seconds": 6.686782714910805,
+        "inference_seconds": 6.671725132968277,
+        "input_tokens": 880,
+        "output_tokens": 451
+      }
+    },
+    {
+      "case_id": "holdout-07",
+      "status": "incomplete",
+      "expected_facts": 6,
+      "predicted_facts": 3,
+      "matched_facts": 3,
+      "extra_facts": 0,
+      "date_hits": 3,
+      "temporality_hits": 1,
+      "expected_reviews": [],
+      "predicted_reviews": [
+        "incomplete_extraction",
+        "missing_allergy_documentation"
+      ],
+      "matched_reviews": [],
+      "metrics": {
+        "total_seconds": 9.20362806902267,
+        "inference_seconds": 9.187697260873392,
+        "input_tokens": 963,
+        "output_tokens": 613
+      }
+    },
+    {
+      "case_id": "holdout-08",
+      "status": "incomplete",
+      "expected_facts": 6,
+      "predicted_facts": 1,
+      "matched_facts": 0,
+      "extra_facts": 1,
+      "date_hits": 0,
+      "temporality_hits": 0,
+      "expected_reviews": [],
+      "predicted_reviews": [
+        "incomplete_extraction",
+        "missing_allergy_documentation"
+      ],
+      "matched_reviews": [],
+      "metrics": {
+        "total_seconds": 8.331987198907882,
+        "inference_seconds": 8.31944678700529,
+        "input_tokens": 866,
+        "output_tokens": 549
+      }
+    }
+  ]
+}
