@@ -1,0 +1,102 @@
+{
+  "case_id": "holdout-03",
+  "split": "held_out",
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "event",
+      "value": "Delivery occurred on 2025-04-02.",
+      "event_date": "2025-04-02",
+      "temporality": "historical",
+      "evidence": [
+        {
+          "source_id": "holdout-03:maternity-summary:p1:b1",
+          "quote": "Delivery occurred on 2025-04-02."
+        }
+      ]
+    },
+    {
+      "id": "fact-02",
+      "category": "problem",
+      "value": "Postpartum iron deficiency anemia diagnosed on 2025-04-03; repeated history is one fact.",
+      "event_date": "2025-04-03",
+      "temporality": "historical",
+      "evidence": [
+        {
+          "source_id": "holdout-03:maternity-summary:p1:b1",
+          "quote": "Postpartum iron deficiency anemia was diagnosed on 2025-04-03."
+        },
+        {
+          "source_id": "holdout-03:postpartum-review:p1:b1",
+          "quote": "Postpartum iron deficiency anemia was diagnosed on 2025-04-03."
+        }
+      ]
+    },
+    {
+      "id": "fact-03",
+      "category": "medication",
+      "value": "Historical ferrous sulfate prescription: 200 mg once daily on 2025-04-04; later reported stopped.",
+      "event_date": "2025-04-04",
+      "temporality": "historical",
+      "evidence": [
+        {
+          "source_id": "holdout-03:maternity-summary:p1:b1",
+          "quote": "Ferrous sulfate 200 mg once daily was prescribed on 2025-04-04."
+        },
+        {
+          "source_id": "holdout-03:postpartum-review:p1:b1",
+          "quote": "The patient reports stopping ferrous sulfate on 2025-05-10 because of constipation."
+        }
+      ]
+    },
+    {
+      "id": "fact-04",
+      "category": "event",
+      "value": "Patient reports stopping ferrous sulfate on 2025-05-10 because of constipation.",
+      "event_date": "2025-05-10",
+      "temporality": "historical",
+      "evidence": [
+        {
+          "source_id": "holdout-03:postpartum-review:p1:b1",
+          "quote": "The patient reports stopping ferrous sulfate on 2025-05-10 because of constipation."
+        }
+      ]
+    },
+    {
+      "id": "fact-05",
+      "category": "event",
+      "value": "Hemoglobin 11.8 g/dL from the sample collected on 2025-05-13; no resolution conclusion documented.",
+      "event_date": "2025-05-13",
+      "temporality": "historical",
+      "evidence": [
+        {
+          "source_id": "holdout-03:blood-count:p1:b1",
+          "quote": "Sample collected on 2025-05-13: hemoglobin 11.8 g/dL."
+        },
+        {
+          "source_id": "holdout-03:blood-count:p1:b1",
+          "quote": "This laboratory report does not state whether anemia has resolved."
+        }
+      ]
+    },
+    {
+      "id": "fact-06",
+      "category": "recommendation",
+      "value": "Recorded plan: discuss blood count and medication history at the scheduled clinic review.",
+      "event_date": "2025-05-20",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "holdout-03:postpartum-review:p1:b1",
+          "quote": "Recorded plan today: discuss the blood count and medication history at the scheduled clinic review."
+        }
+      ]
+    }
+  ],
+  "review_items": [
+    {
+      "reason": "missing_allergy_documentation",
+      "fact_ids": []
+    }
+  ]
+}

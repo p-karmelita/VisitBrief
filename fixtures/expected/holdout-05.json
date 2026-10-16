@@ -1,0 +1,77 @@
+{
+  "case_id": "holdout-05",
+  "split": "held_out",
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "problem",
+      "value": "Burning on urination and increased frequency reported on an undated card; no diagnosis assigned.",
+      "event_date": null,
+      "temporality": "unknown",
+      "evidence": [
+        {
+          "source_id": "holdout-05:intake-card:p1:b1",
+          "quote": "Symptom entry: burning on urination and increased frequency."
+        },
+        {
+          "source_id": "holdout-05:intake-card:p1:b1",
+          "quote": "The card has no allergy section and no clinician diagnosis."
+        }
+      ]
+    },
+    {
+      "id": "fact-02",
+      "category": "event",
+      "value": "Symptom onset entered as 11/12 at noon; year and day/month order unresolved.",
+      "event_date": null,
+      "temporality": "unknown",
+      "evidence": [
+        {
+          "source_id": "holdout-05:intake-card:p1:b1",
+          "quote": "Onset entry: 11/12 at noon; year and day/month order are not specified."
+        }
+      ]
+    },
+    {
+      "id": "fact-03",
+      "category": "problem",
+      "value": "Flank pain explicitly denied on the undated card.",
+      "event_date": null,
+      "temporality": "unknown",
+      "evidence": [
+        {
+          "source_id": "holdout-05:intake-card:p1:b1",
+          "quote": "The patient denies flank pain on this card."
+        }
+      ]
+    },
+    {
+      "id": "fact-04",
+      "category": "medication",
+      "value": "Historical nitrofurantoin course reportedly completed last winter; dose and calendar year unknown, not a current prescription.",
+      "event_date": null,
+      "temporality": "historical",
+      "evidence": [
+        {
+          "source_id": "holdout-05:intake-card:p1:b1",
+          "quote": "Past treatment entry: nitrofurantoin course completed last winter; dose and year not recorded."
+        }
+      ]
+    }
+  ],
+  "review_items": [
+    {
+      "reason": "undated_information",
+      "fact_ids": [
+        "fact-01",
+        "fact-02",
+        "fact-03",
+        "fact-04"
+      ]
+    },
+    {
+      "reason": "missing_allergy_documentation",
+      "fact_ids": []
+    }
+  ]
+}

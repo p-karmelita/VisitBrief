@@ -1,0 +1,21 @@
+{
+  "case_id": "dev-06",
+  "title": "Ankle injury with delayed documentation",
+  "description": "Fictional injury and imaging dates differ from the dates on the later documents.",
+  "split": "development",
+  "fictional": true,
+  "documents": [
+    {
+      "document_id": "orthopedic-note",
+      "title": "Orthopedic follow-up",
+      "document_date": "2025-05-14",
+      "filename": "orthopedic-note.pdf"
+    },
+    {
+      "document_id": "imaging-report",
+      "title": "Delayed ankle radiograph report",
+      "document_date": "2025-05-07",
+      "filename": "imaging-report.pdf"
+    }
+  ]
+}

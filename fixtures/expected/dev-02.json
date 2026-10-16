@@ -1,0 +1,73 @@
+{
+  "case_id": "dev-02",
+  "split": "development",
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "problem",
+      "value": "Hypothyroidism recorded at the visit.",
+      "event_date": "2025-02-11",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "dev-02:clinic-list:p1:b1",
+          "quote": "Problem recorded today: hypothyroidism."
+        }
+      ]
+    },
+    {
+      "id": "fact-02",
+      "category": "medication",
+      "value": "Clinic chart lists levothyroxine 50 mcg every morning; unresolved against the patient list.",
+      "event_date": "2025-02-11",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "dev-02:clinic-list:p1:b1",
+          "quote": "Current medication: levothyroxine 50 mcg every morning."
+        }
+      ]
+    },
+    {
+      "id": "fact-03",
+      "category": "medication",
+      "value": "Patient reports levothyroxine 75 mcg every morning; unresolved against the clinic list.",
+      "event_date": "2025-02-11",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "dev-02:patient-list:p1:b1",
+          "quote": "Patient-reported current medication: levothyroxine 75 mcg every morning."
+        }
+      ]
+    },
+    {
+      "id": "fact-04",
+      "category": "allergy",
+      "value": "Penicillin-associated hives reported; reaction date unknown.",
+      "event_date": null,
+      "temporality": "historical",
+      "evidence": [
+        {
+          "source_id": "dev-02:clinic-list:p1:b1",
+          "quote": "Allergies: penicillin caused hives; reaction date not known."
+        }
+      ]
+    }
+  ],
+  "review_items": [
+    {
+      "reason": "conflicting_medication_doses",
+      "fact_ids": [
+        "fact-02",
+        "fact-03"
+      ]
+    },
+    {
+      "reason": "undated_information",
+      "fact_ids": [
+        "fact-04"
+      ]
+    }
+  ]
+}

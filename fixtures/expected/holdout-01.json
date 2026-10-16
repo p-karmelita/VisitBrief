@@ -1,0 +1,89 @@
+{
+  "case_id": "holdout-01",
+  "split": "held_out",
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "problem",
+      "value": "Mild bilateral sensorineural hearing loss found on audiometry performed on 2025-02-06.",
+      "event_date": "2025-02-06",
+      "temporality": "historical",
+      "evidence": [
+        {
+          "source_id": "holdout-01:audiogram-report:p1:b1",
+          "quote": "Audiometry performed on 2025-02-06 showed mild bilateral sensorineural hearing loss."
+        }
+      ]
+    },
+    {
+      "id": "fact-02",
+      "category": "event",
+      "value": "No hearing device fitted during the audiometry visit.",
+      "event_date": "2025-02-06",
+      "temporality": "historical",
+      "evidence": [
+        {
+          "source_id": "holdout-01:audiogram-report:p1:b1",
+          "quote": "Audiometry performed on 2025-02-06 showed mild bilateral sensorineural hearing loss."
+        },
+        {
+          "source_id": "holdout-01:audiogram-report:p1:b1",
+          "quote": "No hearing device was fitted during the test visit."
+        }
+      ]
+    },
+    {
+      "id": "fact-03",
+      "category": "problem",
+      "value": "Vertigo explicitly denied at ENT review.",
+      "event_date": "2025-02-14",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "holdout-01:ent-review:p1:b1",
+          "quote": "The patient denies vertigo at today's review."
+        }
+      ]
+    },
+    {
+      "id": "fact-04",
+      "category": "medication",
+      "value": "No regular medicines reported in the medication history.",
+      "event_date": "2025-02-14",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "holdout-01:ent-review:p1:b1",
+          "quote": "Medication history today: no regular medicines reported."
+        }
+      ]
+    },
+    {
+      "id": "fact-05",
+      "category": "allergy",
+      "value": "No known drug allergies explicitly recorded.",
+      "event_date": "2025-02-14",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "holdout-01:ent-review:p1:b1",
+          "quote": "Allergies reviewed today: no known drug allergies."
+        }
+      ]
+    },
+    {
+      "id": "fact-06",
+      "category": "recommendation",
+      "value": "Recorded plan: attend a hearing aid discussion; no device selected yet.",
+      "event_date": "2025-02-14",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "holdout-01:ent-review:p1:b1",
+          "quote": "Recorded plan: attend a hearing aid discussion; no device has yet been selected."
+        }
+      ]
+    }
+  ],
+  "review_items": []
+}

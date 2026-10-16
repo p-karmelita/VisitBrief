@@ -1,0 +1,21 @@
+{
+  "case_id": "holdout-06",
+  "title": "Back pain and an incomplete imaging report",
+  "description": "Fictional back pain record includes only the heading of an MRI report; no imaging finding can be recovered.",
+  "split": "held_out",
+  "fictional": true,
+  "documents": [
+    {
+      "document_id": "back-review",
+      "title": "Back pain clinic review",
+      "document_date": "2025-07-22",
+      "filename": "back-review.pdf"
+    },
+    {
+      "document_id": "mri-extract",
+      "title": "Incomplete lumbar MRI report extract",
+      "document_date": "2025-07-21",
+      "filename": "mri-extract.pdf"
+    }
+  ]
+}

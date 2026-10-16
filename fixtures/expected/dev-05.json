@@ -1,0 +1,89 @@
+{
+  "case_id": "dev-05",
+  "split": "development",
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "problem",
+      "value": "Acute sinusitis diagnosed on 2025-04-04.",
+      "event_date": "2025-04-04",
+      "temporality": "historical",
+      "evidence": [
+        {
+          "source_id": "dev-05:treatment-record:p1:b1",
+          "quote": "Acute sinusitis was diagnosed on 2025-04-04."
+        }
+      ]
+    },
+    {
+      "id": "fact-02",
+      "category": "medication",
+      "value": "Historical amoxicillin prescription: 500 mg three times daily for five days starting 2025-04-04; not current.",
+      "event_date": "2025-04-04",
+      "temporality": "historical",
+      "evidence": [
+        {
+          "source_id": "dev-05:treatment-record:p1:b1",
+          "quote": "Amoxicillin 500 mg three times daily was prescribed for five days starting 2025-04-04."
+        },
+        {
+          "source_id": "dev-05:recovery-note:p1:b1",
+          "quote": "The amoxicillin course ended on 2025-04-08 and is no longer being taken."
+        }
+      ]
+    },
+    {
+      "id": "fact-03",
+      "category": "event",
+      "value": "Amoxicillin course ended on 2025-04-08.",
+      "event_date": "2025-04-08",
+      "temporality": "historical",
+      "evidence": [
+        {
+          "source_id": "dev-05:recovery-note:p1:b1",
+          "quote": "The amoxicillin course ended on 2025-04-08 and is no longer being taken."
+        }
+      ]
+    },
+    {
+      "id": "fact-04",
+      "category": "problem",
+      "value": "Sinus symptoms reported resolved at review.",
+      "event_date": "2025-04-15",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "dev-05:recovery-note:p1:b1",
+          "quote": "Sinus symptoms have resolved as of today's review."
+        }
+      ]
+    },
+    {
+      "id": "fact-05",
+      "category": "medication",
+      "value": "Saline nasal spray listed as current, as needed.",
+      "event_date": "2025-04-15",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "dev-05:recovery-note:p1:b1",
+          "quote": "Current medication: saline nasal spray as needed."
+        }
+      ]
+    },
+    {
+      "id": "fact-06",
+      "category": "allergy",
+      "value": "No known drug allergies documented at the earlier treatment encounter.",
+      "event_date": "2025-04-04",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "dev-05:treatment-record:p1:b1",
+          "quote": "Allergies at this encounter: no known drug allergies."
+        }
+      ]
+    }
+  ],
+  "review_items": []
+}

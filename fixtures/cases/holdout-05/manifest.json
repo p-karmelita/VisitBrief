@@ -1,0 +1,15 @@
+{
+  "case_id": "holdout-05",
+  "title": "Urinary symptom card without a date",
+  "description": "Fictional undated intake card contains ambiguous onset and an unanchored historical treatment course.",
+  "split": "held_out",
+  "fictional": true,
+  "documents": [
+    {
+      "document_id": "intake-card",
+      "title": "Undated urinary symptom intake card",
+      "document_date": null,
+      "filename": "intake-card.pdf"
+    }
+  ]
+}

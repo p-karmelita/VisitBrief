@@ -1,0 +1,15 @@
+{
+  "case_id": "dev-04",
+  "title": "Resolved chest discomfort and explicit negatives",
+  "description": "Fictional follow-up distinguishes earlier chest discomfort from symptoms explicitly denied today.",
+  "split": "development",
+  "fictional": true,
+  "documents": [
+    {
+      "document_id": "follow-up",
+      "title": "Chest symptom follow-up note",
+      "document_date": "2025-03-21",
+      "filename": "follow-up.pdf"
+    }
+  ]
+}

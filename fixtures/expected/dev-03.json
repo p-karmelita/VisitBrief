@@ -1,0 +1,64 @@
+{
+  "case_id": "dev-03",
+  "split": "development",
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "event",
+      "value": "Fall onto the left hand on 2025-03-07.",
+      "event_date": "2025-03-07",
+      "temporality": "historical",
+      "evidence": [
+        {
+          "source_id": "dev-03:urgent-note:p1:b1",
+          "quote": "The patient fell onto the left hand on 2025-03-07."
+        }
+      ]
+    },
+    {
+      "id": "fact-02",
+      "category": "problem",
+      "value": "Left wrist sprain assessed at the visit.",
+      "event_date": "2025-03-08",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "dev-03:urgent-note:p1:b1",
+          "quote": "Assessment today: left wrist sprain."
+        }
+      ]
+    },
+    {
+      "id": "fact-03",
+      "category": "event",
+      "value": "Left wrist radiographs reported no acute fracture.",
+      "event_date": "2025-03-08",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "dev-03:urgent-note:p1:b1",
+          "quote": "Left wrist radiographs today showed no acute fracture."
+        }
+      ]
+    },
+    {
+      "id": "fact-04",
+      "category": "recommendation",
+      "value": "Recorded plan: wrist splint for comfort and scheduled review.",
+      "event_date": "2025-03-08",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "dev-03:urgent-note:p1:b1",
+          "quote": "Recorded plan: use the supplied wrist splint for comfort and return for the scheduled review."
+        }
+      ]
+    }
+  ],
+  "review_items": [
+    {
+      "reason": "missing_allergy_documentation",
+      "fact_ids": []
+    }
+  ]
+}

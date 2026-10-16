@@ -1,0 +1,63 @@
+{
+  "case_id": "dev-09",
+  "split": "development",
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "problem",
+      "value": "Asthma recorded, with no wheeze reported today.",
+      "event_date": "2025-06-18",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "dev-09:respiratory-review:p1:b1",
+          "quote": "Assessment today: asthma, with no wheeze reported today."
+        }
+      ]
+    },
+    {
+      "id": "fact-02",
+      "category": "medication",
+      "value": "Budesonide 200 mcg inhaled twice daily listed as current; same statement on both pages.",
+      "event_date": "2025-06-18",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "dev-09:respiratory-review:p1:b1",
+          "quote": "Current inhaler: budesonide 200 mcg inhaled twice daily."
+        },
+        {
+          "source_id": "dev-09:respiratory-review:p2:b1",
+          "quote": "Current inhaler: budesonide 200 mcg inhaled twice daily."
+        }
+      ]
+    },
+    {
+      "id": "fact-03",
+      "category": "allergy",
+      "value": "No known drug allergies explicitly documented.",
+      "event_date": "2025-06-18",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "dev-09:respiratory-review:p1:b1",
+          "quote": "Allergies reviewed today: no known drug allergies."
+        }
+      ]
+    },
+    {
+      "id": "fact-04",
+      "category": "recommendation",
+      "value": "Recorded plan: bring the inhaler to the next technique check.",
+      "event_date": "2025-06-18",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "dev-09:respiratory-review:p2:b1",
+          "quote": "Recorded plan: bring the inhaler to the next technique check."
+        }
+      ]
+    }
+  ],
+  "review_items": []
+}

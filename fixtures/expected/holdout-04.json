@@ -1,0 +1,76 @@
+{
+  "case_id": "holdout-04",
+  "split": "held_out",
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "problem",
+      "value": "Right-eye cataract present on examination; repeated page statement is one finding.",
+      "event_date": "2025-06-24",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "holdout-04:eye-assessment:p1:b1",
+          "quote": "Right-eye cataract is present on today's examination."
+        },
+        {
+          "source_id": "holdout-04:eye-assessment:p2:b1",
+          "quote": "Right-eye cataract is present on today's examination."
+        }
+      ]
+    },
+    {
+      "id": "fact-02",
+      "category": "problem",
+      "value": "New flashes and floaters explicitly denied.",
+      "event_date": "2025-06-24",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "holdout-04:eye-assessment:p1:b1",
+          "quote": "The patient denies new flashes or floaters today."
+        }
+      ]
+    },
+    {
+      "id": "fact-03",
+      "category": "allergy",
+      "value": "No known drug allergies explicitly documented.",
+      "event_date": "2025-06-24",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "holdout-04:eye-assessment:p1:b1",
+          "quote": "Allergies reviewed today: no known drug allergies."
+        }
+      ]
+    },
+    {
+      "id": "fact-04",
+      "category": "recommendation",
+      "value": "Recorded plan: discuss cataract surgery at the next appointment.",
+      "event_date": "2025-06-24",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "holdout-04:eye-assessment:p2:b1",
+          "quote": "Recorded plan: discuss cataract surgery at the next appointment."
+        }
+      ]
+    },
+    {
+      "id": "fact-05",
+      "category": "event",
+      "value": "No cataract operation performed as part of this assessment.",
+      "event_date": "2025-06-24",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "holdout-04:eye-assessment:p2:b1",
+          "quote": "No cataract operation has been performed as part of this assessment."
+        }
+      ]
+    }
+  ],
+  "review_items": []
+}

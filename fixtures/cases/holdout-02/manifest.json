@@ -1,0 +1,21 @@
+{
+  "case_id": "holdout-02",
+  "title": "Seizure follow-up with unreconciled lists",
+  "description": "Fictional hospital and community records disagree on an antiseizure dose without documenting a change.",
+  "split": "held_out",
+  "fictional": true,
+  "documents": [
+    {
+      "document_id": "neurology-note",
+      "title": "Neurology follow-up",
+      "document_date": "2025-03-12",
+      "filename": "neurology-note.pdf"
+    },
+    {
+      "document_id": "community-list",
+      "title": "Community medication record",
+      "document_date": "2025-03-12",
+      "filename": "community-list.pdf"
+    }
+  ]
+}

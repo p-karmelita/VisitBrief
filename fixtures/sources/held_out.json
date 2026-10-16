@@ -1,0 +1,246 @@
+[
+  {
+    "case_id": "holdout-01",
+    "title": "Hearing assessment and device discussion",
+    "description": "Fictional audiology and ENT records distinguish a dated test from a later device discussion.",
+    "split": "held_out",
+    "fictional": true,
+    "documents": [
+      {
+        "document_id": "audiogram-report",
+        "title": "Audiology test summary",
+        "document_date": "2025-02-10",
+        "pages": ["Audiometry performed on 2025-02-06 showed mild bilateral sensorineural hearing loss.\nThe test summary was signed on 2025-02-10.\nNo hearing device was fitted during the test visit."]
+      },
+      {
+        "document_id": "ent-review",
+        "title": "ENT review of hearing results",
+        "document_date": "2025-02-14",
+        "pages": ["The patient denies vertigo at today's review.\nMedication history today: no regular medicines reported.\nAllergies reviewed today: no known drug allergies.\nRecorded plan: attend a hearing aid discussion; no device has yet been selected."]
+      }
+    ],
+    "facts": [
+      {"id": "fact-01", "category": "problem", "value": "Mild bilateral sensorineural hearing loss found on audiometry performed on 2025-02-06.", "event_date": "2025-02-06", "temporality": "historical", "evidence": [{"source_id": "holdout-01:audiogram-report:p1:b1", "quote": "Audiometry performed on 2025-02-06 showed mild bilateral sensorineural hearing loss."}]},
+      {"id": "fact-02", "category": "event", "value": "No hearing device fitted during the audiometry visit.", "event_date": "2025-02-06", "temporality": "historical", "evidence": [{"source_id": "holdout-01:audiogram-report:p1:b1", "quote": "Audiometry performed on 2025-02-06 showed mild bilateral sensorineural hearing loss."}, {"source_id": "holdout-01:audiogram-report:p1:b1", "quote": "No hearing device was fitted during the test visit."}]},
+      {"id": "fact-03", "category": "problem", "value": "Vertigo explicitly denied at ENT review.", "event_date": "2025-02-14", "temporality": "recorded", "evidence": [{"source_id": "holdout-01:ent-review:p1:b1", "quote": "The patient denies vertigo at today's review."}]},
+      {"id": "fact-04", "category": "medication", "value": "No regular medicines reported in the medication history.", "event_date": "2025-02-14", "temporality": "recorded", "evidence": [{"source_id": "holdout-01:ent-review:p1:b1", "quote": "Medication history today: no regular medicines reported."}]},
+      {"id": "fact-05", "category": "allergy", "value": "No known drug allergies explicitly recorded.", "event_date": "2025-02-14", "temporality": "recorded", "evidence": [{"source_id": "holdout-01:ent-review:p1:b1", "quote": "Allergies reviewed today: no known drug allergies."}]},
+      {"id": "fact-06", "category": "recommendation", "value": "Recorded plan: attend a hearing aid discussion; no device selected yet.", "event_date": "2025-02-14", "temporality": "recorded", "evidence": [{"source_id": "holdout-01:ent-review:p1:b1", "quote": "Recorded plan: attend a hearing aid discussion; no device has yet been selected."}]}
+    ],
+    "review_items": []
+  },
+  {
+    "case_id": "holdout-02",
+    "title": "Seizure follow-up with unreconciled lists",
+    "description": "Fictional hospital and community records disagree on an antiseizure dose without documenting a change.",
+    "split": "held_out",
+    "fictional": true,
+    "documents": [
+      {
+        "document_id": "neurology-note",
+        "title": "Neurology follow-up",
+        "document_date": "2025-03-12",
+        "pages": ["Problem recorded today: focal epilepsy.\nThe last reported seizure occurred on 2025-01-09.\nHospital medication list: levetiracetam 500 mg twice daily, marked current.\nAllergies today: no known drug allergies.\nThe hospital and community lists have not been reconciled."]
+      },
+      {
+        "document_id": "community-list",
+        "title": "Community medication record",
+        "document_date": "2025-03-12",
+        "pages": ["Community medication list: levetiracetam 750 mg twice daily, marked current.\nThe record does not give a dose-change date or an instruction to replace the hospital list.\nWhich dose is being taken has not been confirmed."]
+      }
+    ],
+    "facts": [
+      {"id": "fact-01", "category": "problem", "value": "Focal epilepsy recorded at follow-up.", "event_date": "2025-03-12", "temporality": "recorded", "evidence": [{"source_id": "holdout-02:neurology-note:p1:b1", "quote": "Problem recorded today: focal epilepsy."}]},
+      {"id": "fact-02", "category": "event", "value": "Last reported seizure occurred on 2025-01-09.", "event_date": "2025-01-09", "temporality": "historical", "evidence": [{"source_id": "holdout-02:neurology-note:p1:b1", "quote": "The last reported seizure occurred on 2025-01-09."}]},
+      {"id": "fact-03", "category": "medication", "value": "Hospital list marks levetiracetam 500 mg twice daily as current; dose unresolved.", "event_date": "2025-03-12", "temporality": "recorded", "evidence": [{"source_id": "holdout-02:neurology-note:p1:b1", "quote": "Hospital medication list: levetiracetam 500 mg twice daily, marked current."}]},
+      {"id": "fact-04", "category": "medication", "value": "Community list marks levetiracetam 750 mg twice daily as current; dose unresolved.", "event_date": "2025-03-12", "temporality": "recorded", "evidence": [{"source_id": "holdout-02:community-list:p1:b1", "quote": "Community medication list: levetiracetam 750 mg twice daily, marked current."}]},
+      {"id": "fact-05", "category": "allergy", "value": "No known drug allergies explicitly documented.", "event_date": "2025-03-12", "temporality": "recorded", "evidence": [{"source_id": "holdout-02:neurology-note:p1:b1", "quote": "Allergies today: no known drug allergies."}]}
+    ],
+    "review_items": [{"reason": "conflicting_medication_doses", "fact_ids": ["fact-03", "fact-04"]}]
+  },
+  {
+    "case_id": "holdout-03",
+    "title": "Postpartum anemia follow-up packet",
+    "description": "Fictional maternity, laboratory and follow-up documents contain repeated diagnosis history but no allergy assessment.",
+    "split": "held_out",
+    "fictional": true,
+    "documents": [
+      {
+        "document_id": "maternity-summary",
+        "title": "Maternity discharge summary",
+        "document_date": "2025-04-05",
+        "pages": ["Delivery occurred on 2025-04-02.\nPostpartum iron deficiency anemia was diagnosed on 2025-04-03.\nFerrous sulfate 200 mg once daily was prescribed on 2025-04-04.\nNo allergy assessment is included in this packet."]
+      },
+      {
+        "document_id": "blood-count",
+        "title": "Follow-up blood count report",
+        "document_date": "2025-05-15",
+        "pages": ["Sample collected on 2025-05-13: hemoglobin 11.8 g/dL.\nThe result was released on 2025-05-15.\nThis laboratory report does not state whether anemia has resolved."]
+      },
+      {
+        "document_id": "postpartum-review",
+        "title": "Postpartum review",
+        "document_date": "2025-05-20",
+        "pages": ["Postpartum iron deficiency anemia was diagnosed on 2025-04-03.\nThe patient reports stopping ferrous sulfate on 2025-05-10 because of constipation.\nRecorded plan today: discuss the blood count and medication history at the scheduled clinic review.\nThe allergy history was not taken at this contact."]
+      }
+    ],
+    "facts": [
+      {"id": "fact-01", "category": "event", "value": "Delivery occurred on 2025-04-02.", "event_date": "2025-04-02", "temporality": "historical", "evidence": [{"source_id": "holdout-03:maternity-summary:p1:b1", "quote": "Delivery occurred on 2025-04-02."}]},
+      {"id": "fact-02", "category": "problem", "value": "Postpartum iron deficiency anemia diagnosed on 2025-04-03; repeated history is one fact.", "event_date": "2025-04-03", "temporality": "historical", "evidence": [{"source_id": "holdout-03:maternity-summary:p1:b1", "quote": "Postpartum iron deficiency anemia was diagnosed on 2025-04-03."}, {"source_id": "holdout-03:postpartum-review:p1:b1", "quote": "Postpartum iron deficiency anemia was diagnosed on 2025-04-03."}]},
+      {"id": "fact-03", "category": "medication", "value": "Historical ferrous sulfate prescription: 200 mg once daily on 2025-04-04; later reported stopped.", "event_date": "2025-04-04", "temporality": "historical", "evidence": [{"source_id": "holdout-03:maternity-summary:p1:b1", "quote": "Ferrous sulfate 200 mg once daily was prescribed on 2025-04-04."}, {"source_id": "holdout-03:postpartum-review:p1:b1", "quote": "The patient reports stopping ferrous sulfate on 2025-05-10 because of constipation."}]},
+      {"id": "fact-04", "category": "event", "value": "Patient reports stopping ferrous sulfate on 2025-05-10 because of constipation.", "event_date": "2025-05-10", "temporality": "historical", "evidence": [{"source_id": "holdout-03:postpartum-review:p1:b1", "quote": "The patient reports stopping ferrous sulfate on 2025-05-10 because of constipation."}]},
+      {"id": "fact-05", "category": "event", "value": "Hemoglobin 11.8 g/dL from the sample collected on 2025-05-13; no resolution conclusion documented.", "event_date": "2025-05-13", "temporality": "historical", "evidence": [{"source_id": "holdout-03:blood-count:p1:b1", "quote": "Sample collected on 2025-05-13: hemoglobin 11.8 g/dL."}, {"source_id": "holdout-03:blood-count:p1:b1", "quote": "This laboratory report does not state whether anemia has resolved."}]},
+      {"id": "fact-06", "category": "recommendation", "value": "Recorded plan: discuss blood count and medication history at the scheduled clinic review.", "event_date": "2025-05-20", "temporality": "recorded", "evidence": [{"source_id": "holdout-03:postpartum-review:p1:b1", "quote": "Recorded plan today: discuss the blood count and medication history at the scheduled clinic review."}]}
+    ],
+    "review_items": [{"reason": "missing_allergy_documentation", "fact_ids": []}]
+  },
+  {
+    "case_id": "holdout-04",
+    "title": "Cataract assessment with a two-page recap",
+    "description": "Fictional repeated finding spans two pages; a proposed operation must not be represented as completed.",
+    "split": "held_out",
+    "fictional": true,
+    "documents": [
+      {
+        "document_id": "eye-assessment",
+        "title": "Ophthalmology assessment and recap",
+        "document_date": "2025-06-24",
+        "pages": [
+          "Right-eye cataract is present on today's examination.\nThe patient denies new flashes or floaters today.\nAllergies reviewed today: no known drug allergies.",
+          "Recap of the same examination, not a separate encounter.\nRight-eye cataract is present on today's examination.\nRecorded plan: discuss cataract surgery at the next appointment.\nNo cataract operation has been performed as part of this assessment."
+        ]
+      }
+    ],
+    "facts": [
+      {"id": "fact-01", "category": "problem", "value": "Right-eye cataract present on examination; repeated page statement is one finding.", "event_date": "2025-06-24", "temporality": "recorded", "evidence": [{"source_id": "holdout-04:eye-assessment:p1:b1", "quote": "Right-eye cataract is present on today's examination."}, {"source_id": "holdout-04:eye-assessment:p2:b1", "quote": "Right-eye cataract is present on today's examination."}]},
+      {"id": "fact-02", "category": "problem", "value": "New flashes and floaters explicitly denied.", "event_date": "2025-06-24", "temporality": "recorded", "evidence": [{"source_id": "holdout-04:eye-assessment:p1:b1", "quote": "The patient denies new flashes or floaters today."}]},
+      {"id": "fact-03", "category": "allergy", "value": "No known drug allergies explicitly documented.", "event_date": "2025-06-24", "temporality": "recorded", "evidence": [{"source_id": "holdout-04:eye-assessment:p1:b1", "quote": "Allergies reviewed today: no known drug allergies."}]},
+      {"id": "fact-04", "category": "recommendation", "value": "Recorded plan: discuss cataract surgery at the next appointment.", "event_date": "2025-06-24", "temporality": "recorded", "evidence": [{"source_id": "holdout-04:eye-assessment:p2:b1", "quote": "Recorded plan: discuss cataract surgery at the next appointment."}]},
+      {"id": "fact-05", "category": "event", "value": "No cataract operation performed as part of this assessment.", "event_date": "2025-06-24", "temporality": "recorded", "evidence": [{"source_id": "holdout-04:eye-assessment:p2:b1", "quote": "No cataract operation has been performed as part of this assessment."}]}
+    ],
+    "review_items": []
+  },
+  {
+    "case_id": "holdout-05",
+    "title": "Urinary symptom card without a date",
+    "description": "Fictional undated intake card contains ambiguous onset and an unanchored historical treatment course.",
+    "split": "held_out",
+    "fictional": true,
+    "documents": [
+      {
+        "document_id": "intake-card",
+        "title": "Undated urinary symptom intake card",
+        "document_date": null,
+        "pages": ["No completion date is written on this card.\nSymptom entry: burning on urination and increased frequency.\nOnset entry: 11/12 at noon; year and day/month order are not specified.\nThe patient denies flank pain on this card.\nPast treatment entry: nitrofurantoin course completed last winter; dose and year not recorded.\nThe card has no allergy section and no clinician diagnosis."]
+      }
+    ],
+    "facts": [
+      {"id": "fact-01", "category": "problem", "value": "Burning on urination and increased frequency reported on an undated card; no diagnosis assigned.", "event_date": null, "temporality": "unknown", "evidence": [{"source_id": "holdout-05:intake-card:p1:b1", "quote": "Symptom entry: burning on urination and increased frequency."}, {"source_id": "holdout-05:intake-card:p1:b1", "quote": "The card has no allergy section and no clinician diagnosis."}]},
+      {"id": "fact-02", "category": "event", "value": "Symptom onset entered as 11/12 at noon; year and day/month order unresolved.", "event_date": null, "temporality": "unknown", "evidence": [{"source_id": "holdout-05:intake-card:p1:b1", "quote": "Onset entry: 11/12 at noon; year and day/month order are not specified."}]},
+      {"id": "fact-03", "category": "problem", "value": "Flank pain explicitly denied on the undated card.", "event_date": null, "temporality": "unknown", "evidence": [{"source_id": "holdout-05:intake-card:p1:b1", "quote": "The patient denies flank pain on this card."}]},
+      {"id": "fact-04", "category": "medication", "value": "Historical nitrofurantoin course reportedly completed last winter; dose and calendar year unknown, not a current prescription.", "event_date": null, "temporality": "historical", "evidence": [{"source_id": "holdout-05:intake-card:p1:b1", "quote": "Past treatment entry: nitrofurantoin course completed last winter; dose and year not recorded."}]}
+    ],
+    "review_items": [
+      {"reason": "undated_information", "fact_ids": ["fact-01", "fact-02", "fact-03", "fact-04"]},
+      {"reason": "missing_allergy_documentation", "fact_ids": []}
+    ]
+  },
+  {
+    "case_id": "holdout-06",
+    "title": "Back pain and an incomplete imaging report",
+    "description": "Fictional back pain record includes only the heading of an MRI report; no imaging finding can be recovered.",
+    "split": "held_out",
+    "fictional": true,
+    "documents": [
+      {
+        "document_id": "back-review",
+        "title": "Back pain clinic review",
+        "document_date": "2025-07-22",
+        "pages": ["Lower back pain began after lifting a box on 2025-07-10.\nThe patient denies new bowel or bladder symptoms today.\nCurrent medication reported: paracetamol 500 mg as needed, up to three times daily.\nAllergy recorded today: chlorhexidine causes a rash; reaction date is not supplied.\nNo structural diagnosis is assigned in this note."]
+      },
+      {
+        "document_id": "mri-extract",
+        "title": "Incomplete lumbar MRI report extract",
+        "document_date": "2025-07-21",
+        "pages": ["INCOMPLETE SOURCE: report heading only.\nLumbar MRI examination date: 2025-07-18.\nReport signed: 2025-07-21.\nThe findings and impression sections were not supplied.\n[END OF AVAILABLE REPORT TEXT]"]
+      }
+    ],
+    "facts": [
+      {"id": "fact-01", "category": "problem", "value": "Lower back pain began after lifting a box on 2025-07-10; no structural diagnosis documented.", "event_date": "2025-07-10", "temporality": "historical", "evidence": [{"source_id": "holdout-06:back-review:p1:b1", "quote": "Lower back pain began after lifting a box on 2025-07-10."}, {"source_id": "holdout-06:back-review:p1:b1", "quote": "No structural diagnosis is assigned in this note."}]},
+      {"id": "fact-02", "category": "problem", "value": "New bowel or bladder symptoms explicitly denied at review.", "event_date": "2025-07-22", "temporality": "recorded", "evidence": [{"source_id": "holdout-06:back-review:p1:b1", "quote": "The patient denies new bowel or bladder symptoms today."}]},
+      {"id": "fact-03", "category": "medication", "value": "Paracetamol 500 mg as needed, up to three times daily, reported as current.", "event_date": "2025-07-22", "temporality": "recorded", "evidence": [{"source_id": "holdout-06:back-review:p1:b1", "quote": "Current medication reported: paracetamol 500 mg as needed, up to three times daily."}]},
+      {"id": "fact-04", "category": "allergy", "value": "Chlorhexidine rash recorded as an allergy; reaction date not supplied.", "event_date": "2025-07-22", "temporality": "recorded", "evidence": [{"source_id": "holdout-06:back-review:p1:b1", "quote": "Allergy recorded today: chlorhexidine causes a rash; reaction date is not supplied."}]},
+      {"id": "fact-05", "category": "event", "value": "Lumbar MRI examination dated 2025-07-18; findings and impression unavailable.", "event_date": "2025-07-18", "temporality": "historical", "evidence": [{"source_id": "holdout-06:mri-extract:p1:b1", "quote": "Lumbar MRI examination date: 2025-07-18."}, {"source_id": "holdout-06:mri-extract:p1:b1", "quote": "The findings and impression sections were not supplied."}]}
+    ],
+    "review_items": [
+      {"reason": "incomplete_document", "fact_ids": ["fact-05"]},
+      {"reason": "undated_information", "fact_ids": ["fact-04"]}
+    ]
+  },
+  {
+    "case_id": "holdout-07",
+    "title": "Pneumonia treatment and recovery",
+    "description": "Fictional three-document episode separates a completed antibiotic course from current symptom status.",
+    "split": "held_out",
+    "fictional": true,
+    "documents": [
+      {
+        "document_id": "discharge-note",
+        "title": "Respiratory discharge note",
+        "document_date": "2025-08-13",
+        "pages": ["Community-acquired pneumonia was diagnosed on 2025-08-11.\nDoxycycline 100 mg twice daily was prescribed for five days starting 2025-08-12.\nAllergies reviewed at discharge: no known drug allergies."]
+      },
+      {
+        "document_id": "course-confirmation",
+        "title": "Antibiotic course completion call",
+        "document_date": "2025-08-18",
+        "pages": ["The patient reports completing the prescribed doxycycline course on 2025-08-16.\nNo further antibiotic prescription was issued during this call."]
+      },
+      {
+        "document_id": "recovery-review",
+        "title": "Respiratory recovery review",
+        "document_date": "2025-08-27",
+        "pages": ["The patient reports no cough and no fever today.\nDoxycycline is a completed treatment, not a current medication.\nRecorded plan today: attend the previously arranged chest follow-up on 2025-09-10.\nThis note does not contain a repeat chest radiograph result."]
+      }
+    ],
+    "facts": [
+      {"id": "fact-01", "category": "problem", "value": "Community-acquired pneumonia diagnosed on 2025-08-11.", "event_date": "2025-08-11", "temporality": "historical", "evidence": [{"source_id": "holdout-07:discharge-note:p1:b1", "quote": "Community-acquired pneumonia was diagnosed on 2025-08-11."}]},
+      {"id": "fact-02", "category": "medication", "value": "Historical doxycycline prescription: 100 mg twice daily for five days starting 2025-08-12; completed, not current.", "event_date": "2025-08-12", "temporality": "historical", "evidence": [{"source_id": "holdout-07:discharge-note:p1:b1", "quote": "Doxycycline 100 mg twice daily was prescribed for five days starting 2025-08-12."}, {"source_id": "holdout-07:recovery-review:p1:b1", "quote": "Doxycycline is a completed treatment, not a current medication."}]},
+      {"id": "fact-03", "category": "event", "value": "Patient reports completing the doxycycline course on 2025-08-16.", "event_date": "2025-08-16", "temporality": "historical", "evidence": [{"source_id": "holdout-07:course-confirmation:p1:b1", "quote": "The patient reports completing the prescribed doxycycline course on 2025-08-16."}]},
+      {"id": "fact-04", "category": "allergy", "value": "No known drug allergies explicitly recorded at discharge.", "event_date": "2025-08-13", "temporality": "recorded", "evidence": [{"source_id": "holdout-07:discharge-note:p1:b1", "quote": "Allergies reviewed at discharge: no known drug allergies."}]},
+      {"id": "fact-05", "category": "problem", "value": "No cough or fever reported at recovery review.", "event_date": "2025-08-27", "temporality": "recorded", "evidence": [{"source_id": "holdout-07:recovery-review:p1:b1", "quote": "The patient reports no cough and no fever today."}]},
+      {"id": "fact-06", "category": "recommendation", "value": "Plan recorded on 2025-08-27 to attend chest follow-up on 2025-09-10; not a completed appointment.", "event_date": "2025-08-27", "temporality": "recorded", "evidence": [{"source_id": "holdout-07:recovery-review:p1:b1", "quote": "Recorded plan today: attend the previously arranged chest follow-up on 2025-09-10."}]}
+    ],
+    "review_items": []
+  },
+  {
+    "case_id": "holdout-08",
+    "title": "Ureteric stone imaging and reported passage",
+    "description": "Fictional imaging finding and later patient-reported passage remain distinct dated observations.",
+    "split": "held_out",
+    "fictional": true,
+    "documents": [
+      {
+        "document_id": "ct-report",
+        "title": "CT urinary tract report",
+        "document_date": "2025-09-04",
+        "pages": ["CT performed on 2025-09-02 showed a 3 mm left distal ureteric stone.\nThe report was signed on 2025-09-04.\nNo stone analysis is included in this imaging report."]
+      },
+      {
+        "document_id": "urology-review",
+        "title": "Urology follow-up",
+        "document_date": "2025-09-12",
+        "pages": ["The patient reports passing a small stone on 2025-09-10; composition has not been tested.\nThe patient denies flank pain today.\nMedication review today: no analgesics currently being taken.\nAllergies reviewed today: no known drug allergies.\nRecorded plan: bring the collected fragment for the already requested stone analysis."]
+      }
+    ],
+    "facts": [
+      {"id": "fact-01", "category": "problem", "value": "CT performed on 2025-09-02 showed a 3 mm left distal ureteric stone.", "event_date": "2025-09-02", "temporality": "historical", "evidence": [{"source_id": "holdout-08:ct-report:p1:b1", "quote": "CT performed on 2025-09-02 showed a 3 mm left distal ureteric stone."}]},
+      {"id": "fact-02", "category": "event", "value": "Patient reports passing a small stone on 2025-09-10; composition untested.", "event_date": "2025-09-10", "temporality": "historical", "evidence": [{"source_id": "holdout-08:urology-review:p1:b1", "quote": "The patient reports passing a small stone on 2025-09-10; composition has not been tested."}]},
+      {"id": "fact-03", "category": "problem", "value": "Flank pain explicitly denied at follow-up.", "event_date": "2025-09-12", "temporality": "recorded", "evidence": [{"source_id": "holdout-08:urology-review:p1:b1", "quote": "The patient denies flank pain today."}]},
+      {"id": "fact-04", "category": "medication", "value": "No analgesics currently being taken according to the medication review.", "event_date": "2025-09-12", "temporality": "recorded", "evidence": [{"source_id": "holdout-08:urology-review:p1:b1", "quote": "Medication review today: no analgesics currently being taken."}]},
+      {"id": "fact-05", "category": "allergy", "value": "No known drug allergies explicitly documented.", "event_date": "2025-09-12", "temporality": "recorded", "evidence": [{"source_id": "holdout-08:urology-review:p1:b1", "quote": "Allergies reviewed today: no known drug allergies."}]},
+      {"id": "fact-06", "category": "recommendation", "value": "Recorded plan: bring the collected fragment for requested stone analysis.", "event_date": "2025-09-12", "temporality": "recorded", "evidence": [{"source_id": "holdout-08:urology-review:p1:b1", "quote": "Recorded plan: bring the collected fragment for the already requested stone analysis."}]}
+    ],
+    "review_items": []
+  }
+]

@@ -1,0 +1,89 @@
+{
+  "case_id": "dev-07",
+  "split": "development",
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "event",
+      "value": "Headache onset written as 03/04; year and day/month order unresolved.",
+      "event_date": null,
+      "temporality": "unknown",
+      "evidence": [
+        {
+          "source_id": "dev-07:questionnaire:p1:b1",
+          "quote": "headaches began on 03/04; no year or date convention is supplied."
+        }
+      ]
+    },
+    {
+      "id": "fact-02",
+      "category": "problem",
+      "value": "Intermittent headaches with light sensitivity described; no diagnosis assigned.",
+      "event_date": null,
+      "temporality": "unknown",
+      "evidence": [
+        {
+          "source_id": "dev-07:questionnaire:p1:b1",
+          "quote": "The patient describes intermittent headaches with light sensitivity. No diagnosis is entered."
+        }
+      ]
+    },
+    {
+      "id": "fact-03",
+      "category": "medication",
+      "value": "Ibuprofen 200 mg as needed entered on an undated form; current use unknown.",
+      "event_date": null,
+      "temporality": "unknown",
+      "evidence": [
+        {
+          "source_id": "dev-07:questionnaire:p1:b1",
+          "quote": "Medication entry: ibuprofen 200 mg as needed; whether this is current is not stated."
+        }
+      ]
+    },
+    {
+      "id": "fact-04",
+      "category": "event",
+      "value": "Last headache described as two weeks ago, without a dated reference point.",
+      "event_date": null,
+      "temporality": "unknown",
+      "evidence": [
+        {
+          "source_id": "dev-07:questionnaire:p2:b1",
+          "quote": "The patient wrote: last headache was two weeks ago."
+        }
+      ]
+    },
+    {
+      "id": "fact-05",
+      "category": "allergy",
+      "value": "Patient states allergy history is unknown; this is not a denial of allergies.",
+      "event_date": null,
+      "temporality": "unknown",
+      "evidence": [
+        {
+          "source_id": "dev-07:questionnaire:p2:b1",
+          "quote": "Allergy entry: I do not know my allergy history."
+        }
+      ]
+    }
+  ],
+  "review_items": [
+    {
+      "reason": "undated_information",
+      "fact_ids": [
+        "fact-01",
+        "fact-02",
+        "fact-03",
+        "fact-04",
+        "fact-05"
+      ]
+    },
+    {
+      "reason": "unknown_allergy_status",
+      "fact_ids": [
+        "fact-05"
+      ]
+    }
+  ]
+}

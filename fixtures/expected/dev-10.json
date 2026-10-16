@@ -1,0 +1,59 @@
+{
+  "case_id": "dev-10",
+  "split": "development",
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "problem",
+      "value": "Right lower abdominal pain reported to have begun on 2025-07-01; no final diagnosis supplied.",
+      "event_date": "2025-07-01",
+      "temporality": "historical",
+      "evidence": [
+        {
+          "source_id": "dev-10:partial-note:p1:b1",
+          "quote": "The patient reports right lower abdominal pain beginning on 2025-07-01."
+        }
+      ]
+    },
+    {
+      "id": "fact-02",
+      "category": "problem",
+      "value": "Vomiting explicitly denied at the assessment.",
+      "event_date": "2025-07-02",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "dev-10:partial-note:p1:b1",
+          "quote": "The patient denies vomiting at today's assessment."
+        }
+      ]
+    },
+    {
+      "id": "fact-03",
+      "category": "event",
+      "value": "Blood sample collected; results unavailable in the supplied extract.",
+      "event_date": "2025-07-02",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "dev-10:partial-note:p1:b1",
+          "quote": "A blood sample was collected today; results are not present in this extract."
+        }
+      ]
+    }
+  ],
+  "review_items": [
+    {
+      "reason": "incomplete_document",
+      "fact_ids": [
+        "fact-01",
+        "fact-02",
+        "fact-03"
+      ]
+    },
+    {
+      "reason": "missing_allergy_documentation",
+      "fact_ids": []
+    }
+  ]
+}

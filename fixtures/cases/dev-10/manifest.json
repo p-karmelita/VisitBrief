@@ -1,0 +1,15 @@
+{
+  "case_id": "dev-10",
+  "title": "Incomplete abdominal pain source",
+  "description": "Fictional source is deliberately incomplete in content, not a damaged PDF; absent results must not be invented.",
+  "split": "development",
+  "fictional": true,
+  "documents": [
+    {
+      "document_id": "partial-note",
+      "title": "Incomplete urgent assessment extract",
+      "document_date": "2025-07-02",
+      "filename": "partial-note.pdf"
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "case_id": "holdout-08",
+  "split": "held_out",
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "problem",
+      "value": "CT performed on 2025-09-02 showed a 3 mm left distal ureteric stone.",
+      "event_date": "2025-09-02",
+      "temporality": "historical",
+      "evidence": [
+        {
+          "source_id": "holdout-08:ct-report:p1:b1",
+          "quote": "CT performed on 2025-09-02 showed a 3 mm left distal ureteric stone."
+        }
+      ]
+    },
+    {
+      "id": "fact-02",
+      "category": "event",
+      "value": "Patient reports passing a small stone on 2025-09-10; composition untested.",
+      "event_date": "2025-09-10",
+      "temporality": "historical",
+      "evidence": [
+        {
+          "source_id": "holdout-08:urology-review:p1:b1",
+          "quote": "The patient reports passing a small stone on 2025-09-10; composition has not been tested."
+        }
+      ]
+    },
+    {
+      "id": "fact-03",
+      "category": "problem",
+      "value": "Flank pain explicitly denied at follow-up.",
+      "event_date": "2025-09-12",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "holdout-08:urology-review:p1:b1",
+          "quote": "The patient denies flank pain today."
+        }
+      ]
+    },
+    {
+      "id": "fact-04",
+      "category": "medication",
+      "value": "No analgesics currently being taken according to the medication review.",
+      "event_date": "2025-09-12",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "holdout-08:urology-review:p1:b1",
+          "quote": "Medication review today: no analgesics currently being taken."
+        }
+      ]
+    },
+    {
+      "id": "fact-05",
+      "category": "allergy",
+      "value": "No known drug allergies explicitly documented.",
+      "event_date": "2025-09-12",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "holdout-08:urology-review:p1:b1",
+          "quote": "Allergies reviewed today: no known drug allergies."
+        }
+      ]
+    },
+    {
+      "id": "fact-06",
+      "category": "recommendation",
+      "value": "Recorded plan: bring the collected fragment for requested stone analysis.",
+      "event_date": "2025-09-12",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "holdout-08:urology-review:p1:b1",
+          "quote": "Recorded plan: bring the collected fragment for the already requested stone analysis."
+        }
+      ]
+    }
+  ],
+  "review_items": []
+}

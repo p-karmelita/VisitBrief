@@ -1,0 +1,27 @@
+{
+  "case_id": "dev-12",
+  "title": "Knee symptoms, stopped medicine and a cancelled procedure",
+  "description": "Fictional records separate discontinued treatment, a cancelled injection and a future physiotherapy plan.",
+  "split": "development",
+  "fictional": true,
+  "documents": [
+    {
+      "document_id": "joint-review",
+      "title": "Knee osteoarthritis review",
+      "document_date": "2025-08-04",
+      "filename": "joint-review.pdf"
+    },
+    {
+      "document_id": "procedure-log",
+      "title": "Knee injection cancellation log",
+      "document_date": "2025-08-05",
+      "filename": "procedure-log.pdf"
+    },
+    {
+      "document_id": "therapy-plan",
+      "title": "Physiotherapy booking note",
+      "document_date": "2025-08-06",
+      "filename": "therapy-plan.pdf"
+    }
+  ]
+}

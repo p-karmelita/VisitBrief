@@ -1,0 +1,85 @@
+{
+  "case_id": "dev-12",
+  "split": "development",
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "problem",
+      "value": "Right knee osteoarthritis recorded at review.",
+      "event_date": "2025-08-04",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "dev-12:joint-review:p1:b1",
+          "quote": "Assessment today: right knee osteoarthritis."
+        }
+      ]
+    },
+    {
+      "id": "fact-02",
+      "category": "medication",
+      "value": "Naproxen 250 mg twice daily stopped on 2025-07-30 because of stomach discomfort; historical, not current.",
+      "event_date": "2025-07-30",
+      "temporality": "historical",
+      "evidence": [
+        {
+          "source_id": "dev-12:joint-review:p1:b1",
+          "quote": "Naproxen 250 mg twice daily was stopped on 2025-07-30 because of stomach discomfort."
+        }
+      ]
+    },
+    {
+      "id": "fact-03",
+      "category": "allergy",
+      "value": "No known drug allergies documented; stomach discomfort explicitly classified as intolerance rather than allergy.",
+      "event_date": "2025-08-04",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "dev-12:joint-review:p1:b1",
+          "quote": "Allergy review today: no known drug allergies. The stomach discomfort is recorded as an intolerance, not an allergy."
+        }
+      ]
+    },
+    {
+      "id": "fact-04",
+      "category": "event",
+      "value": "Knee injection cancelled on 2025-08-05; no injection administered.",
+      "event_date": "2025-08-05",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "dev-12:procedure-log:p1:b1",
+          "quote": "The knee injection scheduled for 2025-08-05 was cancelled on 2025-08-05. No injection was administered."
+        }
+      ]
+    },
+    {
+      "id": "fact-05",
+      "category": "recommendation",
+      "value": "Plan recorded on 2025-08-06 to attend physiotherapy on 2025-08-19; not a completed session.",
+      "event_date": "2025-08-06",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "dev-12:therapy-plan:p1:b1",
+          "quote": "Recorded plan today: attend an initial physiotherapy session on 2025-08-19. The session is booked, not yet attended."
+        }
+      ]
+    },
+    {
+      "id": "fact-06",
+      "category": "event",
+      "value": "Walking stick use reported at the booking contact.",
+      "event_date": "2025-08-06",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "dev-12:therapy-plan:p1:b1",
+          "quote": "The patient reports using a walking stick today."
+        }
+      ]
+    }
+  ],
+  "review_items": []
+}

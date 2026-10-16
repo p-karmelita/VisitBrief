@@ -1,0 +1,27 @@
+{
+  "case_id": "dev-08",
+  "title": "Shared diabetes history across three documents",
+  "description": "Fictional repeated diagnosis and medication statements are single facts with multiple provenance links.",
+  "split": "development",
+  "fictional": true,
+  "documents": [
+    {
+      "document_id": "clinic-note",
+      "title": "Diabetes review",
+      "document_date": "2025-06-06",
+      "filename": "clinic-note.pdf"
+    },
+    {
+      "document_id": "education-note",
+      "title": "Diabetes education summary",
+      "document_date": "2025-06-06",
+      "filename": "education-note.pdf"
+    },
+    {
+      "document_id": "referral-copy",
+      "title": "Copy of dietitian referral",
+      "document_date": "2025-06-09",
+      "filename": "referral-copy.pdf"
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "case_id": "holdout-06",
+  "split": "held_out",
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "problem",
+      "value": "Lower back pain began after lifting a box on 2025-07-10; no structural diagnosis documented.",
+      "event_date": "2025-07-10",
+      "temporality": "historical",
+      "evidence": [
+        {
+          "source_id": "holdout-06:back-review:p1:b1",
+          "quote": "Lower back pain began after lifting a box on 2025-07-10."
+        },
+        {
+          "source_id": "holdout-06:back-review:p1:b1",
+          "quote": "No structural diagnosis is assigned in this note."
+        }
+      ]
+    },
+    {
+      "id": "fact-02",
+      "category": "problem",
+      "value": "New bowel or bladder symptoms explicitly denied at review.",
+      "event_date": "2025-07-22",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "holdout-06:back-review:p1:b1",
+          "quote": "The patient denies new bowel or bladder symptoms today."
+        }
+      ]
+    },
+    {
+      "id": "fact-03",
+      "category": "medication",
+      "value": "Paracetamol 500 mg as needed, up to three times daily, reported as current.",
+      "event_date": "2025-07-22",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "holdout-06:back-review:p1:b1",
+          "quote": "Current medication reported: paracetamol 500 mg as needed, up to three times daily."
+        }
+      ]
+    },
+    {
+      "id": "fact-04",
+      "category": "allergy",
+      "value": "Chlorhexidine rash recorded as an allergy; reaction date not supplied.",
+      "event_date": "2025-07-22",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "holdout-06:back-review:p1:b1",
+          "quote": "Allergy recorded today: chlorhexidine causes a rash; reaction date is not supplied."
+        }
+      ]
+    },
+    {
+      "id": "fact-05",
+      "category": "event",
+      "value": "Lumbar MRI examination dated 2025-07-18; findings and impression unavailable.",
+      "event_date": "2025-07-18",
+      "temporality": "historical",
+      "evidence": [
+        {
+          "source_id": "holdout-06:mri-extract:p1:b1",
+          "quote": "Lumbar MRI examination date: 2025-07-18."
+        },
+        {
+          "source_id": "holdout-06:mri-extract:p1:b1",
+          "quote": "The findings and impression sections were not supplied."
+        }
+      ]
+    }
+  ],
+  "review_items": [
+    {
+      "reason": "incomplete_document",
+      "fact_ids": [
+        "fact-05"
+      ]
+    },
+    {
+      "reason": "undated_information",
+      "fact_ids": [
+        "fact-04"
+      ]
+    }
+  ]
+}

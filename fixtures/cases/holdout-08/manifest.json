@@ -1,0 +1,21 @@
+{
+  "case_id": "holdout-08",
+  "title": "Ureteric stone imaging and reported passage",
+  "description": "Fictional imaging finding and later patient-reported passage remain distinct dated observations.",
+  "split": "held_out",
+  "fictional": true,
+  "documents": [
+    {
+      "document_id": "ct-report",
+      "title": "CT urinary tract report",
+      "document_date": "2025-09-04",
+      "filename": "ct-report.pdf"
+    },
+    {
+      "document_id": "urology-review",
+      "title": "Urology follow-up",
+      "document_date": "2025-09-12",
+      "filename": "urology-review.pdf"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "case_id": "dev-01",
+  "title": "Routine blood pressure review",
+  "description": "Fictional complete outpatient record with a dated diagnosis and an explicit allergy denial.",
+  "split": "development",
+  "fictional": true,
+  "documents": [
+    {
+      "document_id": "visit-note",
+      "title": "Blood pressure clinic note",
+      "document_date": "2025-01-16",
+      "filename": "visit-note.pdf"
+    },
+    {
+      "document_id": "home-log",
+      "title": "Home blood pressure log summary",
+      "document_date": "2025-01-15",
+      "filename": "home-log.pdf"
+    }
+  ]
+}

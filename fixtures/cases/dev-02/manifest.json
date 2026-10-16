@@ -1,0 +1,21 @@
+{
+  "case_id": "dev-02",
+  "title": "Thyroid medication disagreement",
+  "description": "Fictional contemporaneous lists disagree on levothyroxine dose; neither is authoritative.",
+  "split": "development",
+  "fictional": true,
+  "documents": [
+    {
+      "document_id": "clinic-list",
+      "title": "Endocrine clinic medication list",
+      "document_date": "2025-02-11",
+      "filename": "clinic-list.pdf"
+    },
+    {
+      "document_id": "patient-list",
+      "title": "Patient medication list at the same visit",
+      "document_date": "2025-02-11",
+      "filename": "patient-list.pdf"
+    }
+  ]
+}

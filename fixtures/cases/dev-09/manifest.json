@@ -1,0 +1,15 @@
+{
+  "case_id": "dev-09",
+  "title": "Asthma review with a repeated page statement",
+  "description": "Fictional identical medication quotation appears on two distinct pages, both retained as evidence.",
+  "split": "development",
+  "fictional": true,
+  "documents": [
+    {
+      "document_id": "respiratory-review",
+      "title": "Two-page respiratory review",
+      "document_date": "2025-06-18",
+      "filename": "respiratory-review.pdf"
+    }
+  ]
+}

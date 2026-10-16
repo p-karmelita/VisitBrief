@@ -1,0 +1,15 @@
+{
+  "case_id": "dev-03",
+  "title": "Wrist injury without an allergy section",
+  "description": "Fictional minor injury note with no allergy documentation; silence is not a negative allergy finding.",
+  "split": "development",
+  "fictional": true,
+  "documents": [
+    {
+      "document_id": "urgent-note",
+      "title": "Urgent clinic wrist assessment",
+      "document_date": "2025-03-08",
+      "filename": "urgent-note.pdf"
+    }
+  ]
+}

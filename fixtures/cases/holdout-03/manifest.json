@@ -1,0 +1,27 @@
+{
+  "case_id": "holdout-03",
+  "title": "Postpartum anemia follow-up packet",
+  "description": "Fictional maternity, laboratory and follow-up documents contain repeated diagnosis history but no allergy assessment.",
+  "split": "held_out",
+  "fictional": true,
+  "documents": [
+    {
+      "document_id": "maternity-summary",
+      "title": "Maternity discharge summary",
+      "document_date": "2025-04-05",
+      "filename": "maternity-summary.pdf"
+    },
+    {
+      "document_id": "blood-count",
+      "title": "Follow-up blood count report",
+      "document_date": "2025-05-15",
+      "filename": "blood-count.pdf"
+    },
+    {
+      "document_id": "postpartum-review",
+      "title": "Postpartum review",
+      "document_date": "2025-05-20",
+      "filename": "postpartum-review.pdf"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "case_id": "dev-07",
+  "title": "Undated headache questionnaire",
+  "description": "Fictional two-page questionnaire contains an ambiguous numeric date and relative time without an anchor.",
+  "split": "development",
+  "fictional": true,
+  "documents": [
+    {
+      "document_id": "questionnaire",
+      "title": "Undated headache questionnaire",
+      "document_date": null,
+      "filename": "questionnaire.pdf"
+    }
+  ]
+}

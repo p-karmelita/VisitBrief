@@ -1,0 +1,21 @@
+{
+  "case_id": "dev-05",
+  "title": "Completed sinus treatment",
+  "description": "Fictional completed antibiotic course must not become a current medication.",
+  "split": "development",
+  "fictional": true,
+  "documents": [
+    {
+      "document_id": "treatment-record",
+      "title": "Prior sinus treatment record",
+      "document_date": "2025-04-04",
+      "filename": "treatment-record.pdf"
+    },
+    {
+      "document_id": "recovery-note",
+      "title": "Sinus symptom recovery note",
+      "document_date": "2025-04-15",
+      "filename": "recovery-note.pdf"
+    }
+  ]
+}

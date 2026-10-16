@@ -1,0 +1,27 @@
+{
+  "case_id": "holdout-07",
+  "title": "Pneumonia treatment and recovery",
+  "description": "Fictional three-document episode separates a completed antibiotic course from current symptom status.",
+  "split": "held_out",
+  "fictional": true,
+  "documents": [
+    {
+      "document_id": "discharge-note",
+      "title": "Respiratory discharge note",
+      "document_date": "2025-08-13",
+      "filename": "discharge-note.pdf"
+    },
+    {
+      "document_id": "course-confirmation",
+      "title": "Antibiotic course completion call",
+      "document_date": "2025-08-18",
+      "filename": "course-confirmation.pdf"
+    },
+    {
+      "document_id": "recovery-review",
+      "title": "Respiratory recovery review",
+      "document_date": "2025-08-27",
+      "filename": "recovery-review.pdf"
+    }
+  ]
+}

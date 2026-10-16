@@ -1,0 +1,21 @@
+{
+  "case_id": "holdout-01",
+  "title": "Hearing assessment and device discussion",
+  "description": "Fictional audiology and ENT records distinguish a dated test from a later device discussion.",
+  "split": "held_out",
+  "fictional": true,
+  "documents": [
+    {
+      "document_id": "audiogram-report",
+      "title": "Audiology test summary",
+      "document_date": "2025-02-10",
+      "filename": "audiogram-report.pdf"
+    },
+    {
+      "document_id": "ent-review",
+      "title": "ENT review of hearing results",
+      "document_date": "2025-02-14",
+      "filename": "ent-review.pdf"
+    }
+  ]
+}

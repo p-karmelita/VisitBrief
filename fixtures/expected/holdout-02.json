@@ -1,0 +1,80 @@
+{
+  "case_id": "holdout-02",
+  "split": "held_out",
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "problem",
+      "value": "Focal epilepsy recorded at follow-up.",
+      "event_date": "2025-03-12",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "holdout-02:neurology-note:p1:b1",
+          "quote": "Problem recorded today: focal epilepsy."
+        }
+      ]
+    },
+    {
+      "id": "fact-02",
+      "category": "event",
+      "value": "Last reported seizure occurred on 2025-01-09.",
+      "event_date": "2025-01-09",
+      "temporality": "historical",
+      "evidence": [
+        {
+          "source_id": "holdout-02:neurology-note:p1:b1",
+          "quote": "The last reported seizure occurred on 2025-01-09."
+        }
+      ]
+    },
+    {
+      "id": "fact-03",
+      "category": "medication",
+      "value": "Hospital list marks levetiracetam 500 mg twice daily as current; dose unresolved.",
+      "event_date": "2025-03-12",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "holdout-02:neurology-note:p1:b1",
+          "quote": "Hospital medication list: levetiracetam 500 mg twice daily, marked current."
+        }
+      ]
+    },
+    {
+      "id": "fact-04",
+      "category": "medication",
+      "value": "Community list marks levetiracetam 750 mg twice daily as current; dose unresolved.",
+      "event_date": "2025-03-12",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "holdout-02:community-list:p1:b1",
+          "quote": "Community medication list: levetiracetam 750 mg twice daily, marked current."
+        }
+      ]
+    },
+    {
+      "id": "fact-05",
+      "category": "allergy",
+      "value": "No known drug allergies explicitly documented.",
+      "event_date": "2025-03-12",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "holdout-02:neurology-note:p1:b1",
+          "quote": "Allergies today: no known drug allergies."
+        }
+      ]
+    }
+  ],
+  "review_items": [
+    {
+      "reason": "conflicting_medication_doses",
+      "fact_ids": [
+        "fact-03",
+        "fact-04"
+      ]
+    }
+  ]
+}

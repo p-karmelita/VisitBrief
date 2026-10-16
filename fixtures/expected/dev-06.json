@@ -1,0 +1,79 @@
+{
+  "case_id": "dev-06",
+  "split": "development",
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "event",
+      "value": "Right ankle twisting injury on 2025-05-02.",
+      "event_date": "2025-05-02",
+      "temporality": "historical",
+      "evidence": [
+        {
+          "source_id": "dev-06:orthopedic-note:p1:b1",
+          "quote": "The patient twisted the right ankle on 2025-05-02."
+        }
+      ]
+    },
+    {
+      "id": "fact-02",
+      "category": "problem",
+      "value": "Right ankle sprain diagnosed at urgent care on 2025-05-03.",
+      "event_date": "2025-05-03",
+      "temporality": "historical",
+      "evidence": [
+        {
+          "source_id": "dev-06:orthopedic-note:p1:b1",
+          "quote": "Right ankle sprain was diagnosed at urgent care on 2025-05-03."
+        }
+      ]
+    },
+    {
+      "id": "fact-03",
+      "category": "event",
+      "value": "Right ankle radiographs from 2025-05-03 showed no acute fracture; report signed later.",
+      "event_date": "2025-05-03",
+      "temporality": "historical",
+      "evidence": [
+        {
+          "source_id": "dev-06:imaging-report:p1:b1",
+          "quote": "Examination performed on 2025-05-03: right ankle radiographs. The 2025-05-03 images show no acute fracture."
+        }
+      ]
+    },
+    {
+      "id": "fact-04",
+      "category": "allergy",
+      "value": "Adhesive tape causing local rash recorded as an allergy; reaction onset not dated.",
+      "event_date": "2025-05-14",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "dev-06:orthopedic-note:p1:b1",
+          "quote": "Allergy recorded today: adhesive tape causes a local rash; onset date unknown."
+        }
+      ]
+    },
+    {
+      "id": "fact-05",
+      "category": "recommendation",
+      "value": "Plan recorded on 2025-05-14: attend physiotherapy scheduled for 2025-05-20; attendance not documented.",
+      "event_date": "2025-05-14",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "dev-06:orthopedic-note:p1:b1",
+          "quote": "Recorded plan today: attend the physiotherapy appointment scheduled for 2025-05-20."
+        }
+      ]
+    }
+  ],
+  "review_items": [
+    {
+      "reason": "undated_information",
+      "fact_ids": [
+        "fact-04"
+      ]
+    }
+  ]
+}

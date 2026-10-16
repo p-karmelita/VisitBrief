@@ -1,0 +1,89 @@
+{
+  "case_id": "holdout-07",
+  "split": "held_out",
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "problem",
+      "value": "Community-acquired pneumonia diagnosed on 2025-08-11.",
+      "event_date": "2025-08-11",
+      "temporality": "historical",
+      "evidence": [
+        {
+          "source_id": "holdout-07:discharge-note:p1:b1",
+          "quote": "Community-acquired pneumonia was diagnosed on 2025-08-11."
+        }
+      ]
+    },
+    {
+      "id": "fact-02",
+      "category": "medication",
+      "value": "Historical doxycycline prescription: 100 mg twice daily for five days starting 2025-08-12; completed, not current.",
+      "event_date": "2025-08-12",
+      "temporality": "historical",
+      "evidence": [
+        {
+          "source_id": "holdout-07:discharge-note:p1:b1",
+          "quote": "Doxycycline 100 mg twice daily was prescribed for five days starting 2025-08-12."
+        },
+        {
+          "source_id": "holdout-07:recovery-review:p1:b1",
+          "quote": "Doxycycline is a completed treatment, not a current medication."
+        }
+      ]
+    },
+    {
+      "id": "fact-03",
+      "category": "event",
+      "value": "Patient reports completing the doxycycline course on 2025-08-16.",
+      "event_date": "2025-08-16",
+      "temporality": "historical",
+      "evidence": [
+        {
+          "source_id": "holdout-07:course-confirmation:p1:b1",
+          "quote": "The patient reports completing the prescribed doxycycline course on 2025-08-16."
+        }
+      ]
+    },
+    {
+      "id": "fact-04",
+      "category": "allergy",
+      "value": "No known drug allergies explicitly recorded at discharge.",
+      "event_date": "2025-08-13",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "holdout-07:discharge-note:p1:b1",
+          "quote": "Allergies reviewed at discharge: no known drug allergies."
+        }
+      ]
+    },
+    {
+      "id": "fact-05",
+      "category": "problem",
+      "value": "No cough or fever reported at recovery review.",
+      "event_date": "2025-08-27",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "holdout-07:recovery-review:p1:b1",
+          "quote": "The patient reports no cough and no fever today."
+        }
+      ]
+    },
+    {
+      "id": "fact-06",
+      "category": "recommendation",
+      "value": "Plan recorded on 2025-08-27 to attend chest follow-up on 2025-09-10; not a completed appointment.",
+      "event_date": "2025-08-27",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "holdout-07:recovery-review:p1:b1",
+          "quote": "Recorded plan today: attend the previously arranged chest follow-up on 2025-09-10."
+        }
+      ]
+    }
+  ],
+  "review_items": []
+}

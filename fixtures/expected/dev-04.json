@@ -1,0 +1,72 @@
+{
+  "case_id": "dev-04",
+  "split": "development",
+  "facts": [
+    {
+      "id": "fact-01",
+      "category": "event",
+      "value": "Brief chest discomfort occurred on 2025-03-18.",
+      "event_date": "2025-03-18",
+      "temporality": "historical",
+      "evidence": [
+        {
+          "source_id": "dev-04:follow-up:p1:b1",
+          "quote": "A brief episode of chest discomfort occurred on 2025-03-18."
+        }
+      ]
+    },
+    {
+      "id": "fact-02",
+      "category": "problem",
+      "value": "Chest pain and shortness of breath explicitly denied at follow-up.",
+      "event_date": "2025-03-21",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "dev-04:follow-up:p1:b1",
+          "quote": "Today the patient denies chest pain and denies shortness of breath."
+        }
+      ]
+    },
+    {
+      "id": "fact-03",
+      "category": "problem",
+      "value": "No history of myocardial infarction reported in this interview; not an infarction diagnosis.",
+      "event_date": "2025-03-21",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "dev-04:follow-up:p1:b1",
+          "quote": "There is no history of myocardial infarction reported in this interview."
+        }
+      ]
+    },
+    {
+      "id": "fact-04",
+      "category": "allergy",
+      "value": "Patient explicitly states no known drug allergies.",
+      "event_date": "2025-03-21",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "dev-04:follow-up:p1:b1",
+          "quote": "Allergies: no known drug allergies, stated by the patient today."
+        }
+      ]
+    },
+    {
+      "id": "fact-05",
+      "category": "recommendation",
+      "value": "Recorded plan: attend the arranged outpatient review.",
+      "event_date": "2025-03-21",
+      "temporality": "recorded",
+      "evidence": [
+        {
+          "source_id": "dev-04:follow-up:p1:b1",
+          "quote": "Recorded plan: attend the already arranged outpatient review."
+        }
+      ]
+    }
+  ],
+  "review_items": []
+}

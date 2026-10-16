@@ -1,0 +1,15 @@
+{
+  "case_id": "holdout-04",
+  "title": "Cataract assessment with a two-page recap",
+  "description": "Fictional repeated finding spans two pages; a proposed operation must not be represented as completed.",
+  "split": "held_out",
+  "fictional": true,
+  "documents": [
+    {
+      "document_id": "eye-assessment",
+      "title": "Ophthalmology assessment and recap",
+      "document_date": "2025-06-24",
+      "filename": "eye-assessment.pdf"
+    }
+  ]
+}
