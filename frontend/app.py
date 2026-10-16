@@ -12,10 +12,78 @@ CATEGORIES = {
     "recommendation": "Recorded recommendations",
 }
 
+DEMO_NOTES = {
+    "dev-01": "Demo · routine packet. Open a fact to see the quote it came from.",
+    "dev-02": "Demo · two recorded doses. The app does not choose between them.",
+    "dev-11": (
+        "Demo · the document tells the model to invent a diagnosis. "
+        "That sentence is not a fact."
+    ),
+}
+
+DEMO_LABELS = {
+    "dev-01": "routine packet",
+    "dev-02": "two doses, the app does not choose",
+    "dev-11": "an instruction in the source is not a fact",
+}
+
+REASON_GLOSS = {
+    "conflicting_medication_doses": (
+        "Two documents record different doses of the same medicine. "
+        "Both stay on screen. The app does not choose."
+    ),
+    "untrusted_instruction_in_source": (
+        "A document tells the model to ignore instructions or invent a diagnosis. "
+        "That sentence is not a fact."
+    ),
+    "missing_allergy_documentation": (
+        "No allergy sentence was extracted. This is not a finding of no allergies."
+    ),
+    "undated_information": (
+        "These lines have no date inside the quote, "
+        "so they stay off the timeline."
+    ),
+    "incomplete_document": "A source says the document itself is incomplete or a page is missing.",
+    "no_supported_facts": "No model sentence survived the quote check.",
+    "incomplete_extraction": (
+        "At least one model candidate was dropped or had its wording replaced by the quote."
+    ),
+}
+
+STORY_REASONS = {
+    "conflicting_medication_doses",
+    "untrusted_instruction_in_source",
+    "no_supported_facts",
+    "incomplete_document",
+}
+
+GATE_GLOSS = {
+    "verbatim_quote": "The displayed sentence is the quote from its source block.",
+    "paraphrase_replaced_by_quote": (
+        "The model rewrote this sentence. The screen shows the cited quote instead."
+    ),
+    "unsupported_evidence_removed": "Evidence that was not in its assigned block was removed.",
+    "quote_not_in_block": (
+        "Dropped. The quote is not in the assigned block. The rejected wording is not shown."
+    ),
+    "untrusted_instruction": (
+        "Dropped. This source sentence tells the model to ignore instructions "
+        "or invent a diagnosis."
+    ),
+    "date_not_in_quote": "A date supplied by the model is not in the quote, so it was cleared.",
+    "temporality_corrected": (
+        "The wording says this medication is historical, so it was not labeled as current."
+    ),
+}
+
 
 def clear_case():
     for key in ("detail", "brief", "generation_error", "selected_fact"):
         st.session_state.pop(key, None)
+
+
+def gloss(reason):
+    return REASON_GLOSS.get(reason, reason.replace("_", " ").capitalize())
 
 
 def show_fact(fact):
@@ -49,57 +117,101 @@ def show_evidence(fact, detail):
             st.text(page.text)
 
 
-def show_brief(brief, detail):
+def show_status(brief):
     if brief.status == "incomplete":
-        st.warning("Incomplete extraction — some information may be missing. Review all sources.")
+        st.warning(
+            "Incomplete extraction. Draft for clinician review. "
+            "Some model candidates did not reach the screen."
+        )
     else:
-        st.info("Draft ready for review — not clinically approved.")
+        st.info(
+            "Draft for clinician review. Not a diagnosis and not a treatment change."
+        )
     st.caption(
         "Historical records are not current prescriptions. A matching quote does not prove "
         "correct interpretation or medical truth."
     )
-    facts_tab, timeline_tab, review_tab = st.tabs(["Facts", "Timeline", "To review"])
-    with facts_tab:
-        for category, title in CATEGORIES.items():
-            st.subheader(title)
-            facts = [fact for fact in brief.facts if fact.category == category]
-            for fact in facts:
-                show_fact(fact)
-            if not facts:
-                st.caption("No extracted facts in this section — not evidence of absence.")
+    story = []
+    routine = []
+    for item in brief.review_items:
+        if item.reason == "incomplete_extraction" and brief.status == "incomplete":
+            continue
+        if item.reason in STORY_REASONS:
+            story.append(item.reason)
+        else:
+            routine.append(item.reason)
+    for reason in dict.fromkeys(story):
+        st.warning(gloss(reason))
+    if routine:
+        st.caption(" · ".join(gloss(reason) for reason in dict.fromkeys(routine)))
+
+
+def show_gate(brief):
+    if not brief.gate:
+        return
+    kept = sum(event.outcome == "kept" for event in brief.gate)
+    repaired = [event for event in brief.gate if event.outcome == "repaired"]
+    dropped = [event for event in brief.gate if event.outcome == "dropped"]
+    st.subheader("Model gate")
+    counts = st.columns(3)
+    counts[0].metric("Kept", kept)
+    counts[1].metric("Repaired", len(repaired))
+    counts[2].metric("Dropped", len(dropped))
+    st.caption("Rejected wording that is not in a source block is counted and not repeated.")
+    for event in (*repaired, *dropped):
+        label = "Repaired" if event.outcome == "repaired" else "Dropped"
+        st.caption(f"{label} · {GATE_GLOSS[event.reason]}")
+        if event.text:
+            st.text(event.text)
+
+
+def show_brief(brief, detail):
+    show_status(brief)
     by_id = {fact.id: fact for fact in brief.facts}
-    with timeline_tab:
-        for entry in brief.timeline:
-            st.subheader(str(entry.event_date))
-            for fact_id in entry.fact_ids:
-                if fact_id in by_id:
-                    show_fact(by_id[fact_id])
-        st.subheader("Date not recorded")
-        undated = [fact for fact in brief.facts if fact.event_date is None]
-        for fact in undated:
-            show_fact(fact)
-        if not undated:
-            st.caption("No undated extracted facts.")
-    with review_tab:
-        st.caption("Flags are limited checks, not a complete clinical review.")
-        for item in brief.review_items:
-            st.warning(item.reason.replace("_", " ").capitalize())
-            for fact_id in item.fact_ids:
-                if fact_id in by_id:
-                    show_fact(by_id[fact_id])
-        if not brief.review_items:
-            st.info("No automated flags. Clinician review is still required.")
-    st.divider()
-    st.subheader("Evidence explorer")
-    if brief.facts:
-        fact_id = st.selectbox(
-            "Select a fact to inspect its sources", list(by_id),
-            format_func=lambda value: f"{by_id[value].category.value}: {by_id[value].value}",
-            key="selected_fact",
-        )
-        show_evidence(by_id[fact_id], detail)
-    else:
-        st.info("No supported facts were extracted. Inspect the source documents below.")
+    facts_column, evidence_column = st.columns([1.15, 1])
+    with facts_column:
+        facts_tab, timeline_tab, review_tab = st.tabs(["Facts", "Timeline", "To review"])
+        with facts_tab:
+            for category, title in CATEGORIES.items():
+                st.subheader(title)
+                facts = [fact for fact in brief.facts if fact.category == category]
+                for fact in facts:
+                    show_fact(fact)
+                if not facts:
+                    st.caption("No extracted facts in this section — not evidence of absence.")
+        with timeline_tab:
+            for entry in brief.timeline:
+                st.subheader(str(entry.event_date))
+                for fact_id in entry.fact_ids:
+                    if fact_id in by_id:
+                        show_fact(by_id[fact_id])
+            st.subheader("Date not recorded")
+            undated = [fact for fact in brief.facts if fact.event_date is None]
+            for fact in undated:
+                show_fact(fact)
+            if not undated:
+                st.caption("No undated extracted facts.")
+        with review_tab:
+            st.caption("Flags are limited checks, not a complete clinical review.")
+            for item in brief.review_items:
+                st.warning(gloss(item.reason))
+                for fact_id in item.fact_ids:
+                    if fact_id in by_id:
+                        show_fact(by_id[fact_id])
+            if not brief.review_items:
+                st.info("No automated flags. Clinician review is still required.")
+    with evidence_column:
+        st.subheader("Evidence")
+        if brief.facts:
+            fact_id = st.selectbox(
+                "Select a fact to inspect its sources", list(by_id),
+                format_func=lambda value: f"{by_id[value].category.value}: {by_id[value].value}",
+                key="selected_fact",
+            )
+            show_evidence(by_id[fact_id], detail)
+        else:
+            st.info("No supported facts were extracted. Inspect the source documents below.")
+        show_gate(brief)
     with st.expander("Processing metrics"):
         columns = st.columns(4)
         columns[0].metric("Total", f"{brief.metrics.total_seconds:.2f} s")
@@ -144,13 +256,18 @@ def main():
         summaries = {case.case_id: case for case in catalog}
         case_id = st.selectbox(
             "Fictional case", list(summaries),
-            format_func=lambda value: f"{value} · {summaries[value].title}",
+            format_func=lambda value: (
+                f"{value} · {summaries[value].title} — {DEMO_LABELS[value]}"
+                if value in DEMO_LABELS else f"{value} · {summaries[value].title}"
+            ),
             key="case_id", on_change=clear_case,
         )
         st.caption(f"Dataset: {summaries[case_id].split.replace('_', ' ')}")
         st.caption("No uploads. No free-form prompts. Results stay in this session only.")
     st.header(summaries[case_id].title)
     st.text(summaries[case_id].description)
+    if case_id in DEMO_NOTES:
+        st.info(DEMO_NOTES[case_id])
     if "detail" not in st.session_state or st.session_state.detail.case_id != case_id:
         clear_case()
         try:
