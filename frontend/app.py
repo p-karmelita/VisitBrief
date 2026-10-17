@@ -1,6 +1,7 @@
 from html import escape
 
 import streamlit as st
+from fpdf import FPDF
 
 from frontend import client
 
@@ -75,6 +76,98 @@ GATE_GLOSS = {
         "The wording says this medication is historical, so it was not labeled as current."
     ),
 }
+
+
+def pdf_text(value: object) -> str:
+    return str(value).encode("latin-1", "replace").decode("latin-1")
+
+
+def write_line(pdf: FPDF, text: str, height: float) -> None:
+    pdf.multi_cell(0, height, pdf_text(text), new_x="LMARGIN", new_y="NEXT")
+
+
+def write_heading(pdf: FPDF, text: str) -> None:
+    pdf.ln(2)
+    pdf.set_font("Helvetica", "B", 13)
+    write_line(pdf, text, 7)
+    pdf.set_font("Helvetica", size=11)
+
+
+def write_paragraph(pdf: FPDF, text: str) -> None:
+    write_line(pdf, text, 6)
+
+
+def write_fact(pdf: FPDF, fact) -> None:
+    write_paragraph(pdf, fact.value)
+    write_paragraph(
+        pdf, f"{fact.temporality.title()} · {fact.event_date or 'Date not recorded'}"
+    )
+    for evidence in fact.evidence:
+        write_paragraph(pdf, f"Quote: {evidence.quote}")
+    pdf.ln(1)
+
+
+def brief_pdf(brief) -> bytes:
+    pdf = FPDF()
+    pdf.set_title(pdf_text(f"VisitBrief {brief.case_id}"))
+    pdf.set_margins(16, 16, 16)
+    pdf.set_auto_page_break(auto=True, margin=16)
+    pdf.add_page()
+    pdf.set_font("Helvetica", "B", 16)
+    write_line(pdf, "VisitBrief draft", 8)
+    pdf.set_font("Helvetica", size=11)
+    write_paragraph(pdf, f"Case {brief.case_id}")
+    write_paragraph(
+        pdf,
+        "Fictional draft for review. Not a clinical document. "
+        "A matching quote does not prove medical truth.",
+    )
+    status = (
+        "Incomplete extraction. Some information may be missing."
+        if brief.status == "incomplete"
+        else "Draft ready for review. Not clinically approved."
+    )
+    write_paragraph(pdf, status)
+    by_id = {fact.id: fact for fact in brief.facts}
+    for category, title in CATEGORIES.items():
+        write_heading(pdf, title)
+        facts = [fact for fact in brief.facts if fact.category == category]
+        if not facts:
+            write_paragraph(pdf, "No extracted facts in this section.")
+            continue
+        for fact in facts:
+            write_fact(pdf, fact)
+    write_heading(pdf, "Timeline")
+    if not brief.timeline:
+        write_paragraph(pdf, "No dated facts.")
+    for entry in brief.timeline:
+        write_heading(pdf, str(entry.event_date))
+        for fact_id in entry.fact_ids:
+            if fact_id in by_id:
+                write_fact(pdf, by_id[fact_id])
+    write_heading(pdf, "Date not recorded")
+    undated = [fact for fact in brief.facts if fact.event_date is None]
+    if not undated:
+        write_paragraph(pdf, "No undated extracted facts.")
+    for fact in undated:
+        write_fact(pdf, fact)
+    write_heading(pdf, "To review")
+    if not brief.review_items:
+        write_paragraph(pdf, "No automated flags. Clinician review is still required.")
+    for item in brief.review_items:
+        write_paragraph(pdf, item.reason.replace("_", " ").capitalize())
+        for fact_id in item.fact_ids:
+            if fact_id in by_id:
+                write_fact(pdf, by_id[fact_id])
+    write_heading(pdf, "Processing metrics")
+    write_paragraph(
+        pdf,
+        f"Total {brief.metrics.total_seconds:.2f} s. "
+        f"Inference {brief.metrics.inference_seconds:.2f} s. "
+        f"Input tokens {brief.metrics.input_tokens}. "
+        f"Output tokens {brief.metrics.output_tokens}.",
+    )
+    return bytes(pdf.output())
 
 
 def clear_case():
@@ -290,6 +383,14 @@ def main():
                 st.session_state.brief = client.generate(case_id)
         except client.APIError as exc:
             st.session_state.generation_error = str(exc)
+    if "brief" in st.session_state:
+        st.download_button(
+            "Download PDF",
+            data=brief_pdf(st.session_state.brief),
+            file_name=f"{case_id}-brief.pdf",
+            mime="application/pdf",
+        )
+
     if "generation_error" in st.session_state:
         st.error(st.session_state.generation_error)
     if "brief" in st.session_state:
