@@ -1,5 +1,5 @@
-<!--START_SECTION:badges-->
 # VisitBrief
+
 
 Source-linked visit preparation for staff. An allowlisted fictional chart becomes draft facts, a timeline and a review list. Every line on the screen quotes the page it came from.
 
@@ -74,4 +74,3 @@ python -m ruff check .
 - The 12 development cases and 8 held-out cases stay separate. Expected answers are evaluation material, not the model response.
 
 Public repository: [github.com/p-karmelita/VisitBrief](https://github.com/p-karmelita/VisitBrief)
-<!--END_SECTION:badges-->
